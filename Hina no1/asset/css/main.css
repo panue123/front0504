@@ -1,0 +1,113 @@
+/* NAVBAR */
+.header {
+	position: fixed;
+	z-index: 1000;
+	background-color: #fff;
+}
+
+.nav-search-text {
+	color: #727272;
+	font-size: 14px;
+	font-family: "Archivo", serif;
+	font-weight: 600;
+	margin-left: 85px;
+	line-height: 24px;
+}
+
+.nav-search-text {
+	font-size: 14px;
+	font-family: "Archivo", serif;
+	font-weight: 600;
+	padding-left: 0px !important;
+}
+
+.nav-logo {
+	font-family: "Architects Daughter", serif;
+	font-size: 30px;
+	color: #a99170;
+	padding-left: 0px !important;
+	position: relative;
+}
+
+.nav-logo span {
+	position: absolute;
+	top: -10px;
+	left: -26px;
+}
+
+.second-nav-row {
+	margin: 20px 100px 0 300px !important;
+	max-width: fit-content;
+}
+
+.second-nav-text {
+	padding-left: 0px !important;
+	padding-right: 40px !important;
+	max-width: fit-content !important;
+}
+
+.second-nav-text a {
+	color: #525252;
+	font-size: 14px;
+	font-family: "Archivo", serif;
+	font-weight: 600;
+	line-height: 24px;
+}
+
+.second-nav-text a:hover {
+	color: #EFC5C9;
+}
+
+.active a {
+	color: #EFC5C9;
+}
+
+.second-nav-icon i {
+	font-size: 30px;
+}
+
+/* ENDNAV */
+
+/* SLIDER */
+.content {
+	position: relative;
+	top: 95px;
+}
+
+.carousel-item {
+	position: relative;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.4));
+	z-index: 2;
+}
+
+.carousel-item img {
+	position: relative;
+	z-index: 1;
+}
+
+.slider-text {
+	z-index: 3;
+	position: relative;
+}
+
+.slider-text h1 {
+	color: #f6d4d0;
+	font-family: "Arima", serif;
+	position: absolute;
+	right: -120px;
+	top: 0px;
+}
+
+.slider-button {
+	z-index: 3 !important;
+}
+
+/* ENDSLIDER */
