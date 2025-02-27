@@ -1,22 +1,22 @@
 /* Reset mặc định */
 body {
     font-family: 'Archivo', sans-serif;
-    background-color: #fff5f5;
+    background-color: #e5c0c0;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 1200px;
+    max-width:fit-content;
     margin: 20px auto;
-    background: #ffffff;
+    background: #FFF5F5;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: #d95c78;
+    color: #E67E7E;
     text-align: left;
     margin-bottom: 20px;
 }
@@ -32,9 +32,9 @@ h1 {
 }
 
 .nav-logo span {
-    font-size: 28px;
+    font-size: 30px;
     color: #A99170;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Architects Daughter',serif;
     display: inline-block;
 }
 .nav-logo {
@@ -54,21 +54,26 @@ h1 {
 }
 
 .second-nav-text a {
-    color: #333;
+    color: #525252;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: bold;
+    font-size: 14px;
     padding: 10px 15px;
     display: inline-block;
 }
 
 .second-nav-text.active a {
-    color: #C69FA2;
-    border-bottom: 3px solid #7e6567;
+    color: #EFC5C9;
 }
 
 .second-nav-text a:hover {
-    color: #d95c78;
+    color: #EFC5C9;
+}
+
+.second-nav-icon i {
+	font-size: 18px;
+    margin-right: 10px;
+    
 }
 
 /* Bảng quản lý danh mục */
@@ -83,7 +88,7 @@ table {
 
 thead {
     background-color: #f8cdd2;
-    color: #fff;
+    color: #403f3f;
 }
 
 thead th {
@@ -118,19 +123,19 @@ tbody tr:nth-child(even) {
 }
 
 .btn:hover {
-    background-color: #d95c78;
+    background-color: #f8cdd2;
 }
 
 .actions button {
-    background-color: #d95c78;
-    color: white;
+    background-color: #f8cdd2;
+    color: rgb(39, 38, 38);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .actions button:hover {
-    background-color: #b94e66;
+    background-color: #E67E7E;
 }
