@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="asset/css/base.css">
 	<link rel="stylesheet" href="asset/css/main.css">
 	<link rel="stylesheet" href="asset/css/reset.css">
+	<link rel="stylesheet" href="asset/css/diachigiaohang.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +24,112 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="container-fluid px-0">
+		<div class="header">
+			<div class="navbar">
+				<div class="row first-nav-row mx-0 w-100">
+					<div class="col ">
+						<div class="row">
+							<div class="col-4 nav-search-text">TÌM KIẾM SẢN PHẨM</div>
+							<div class="col-6 nav-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+						</div>
+					</div>
+					<div class="col nav-logo">
+						<span>hina</span>
+					</div>
+				</div>
+				<div class="row second-nav-row w-100">
+					<div class="col second-nav-text"><a href="">TRANG CHỦ</a></div>
+					<div class="col second-nav-text"><a href="">NHÓM SẢN PHẨM <i
+								class="fa-solid fa-chevron-down"></i></a>
+					</div>
+					<div class="col second-nav-text"><a href="">SẢN PHẨM HOT</a></div>
+					<div class="col second-nav-text"><a href="">TIN TỨC NỔI BẬT</a></div>
+					<div class="col second-nav-text"><a href="">GIỚI THIỆU</a></div>
+					<div class="col second-nav-text">
+						<div class="row">
+							<div class="col">
+								<a href="" class="second-nav-icon"><i class="fa-solid fa-cart-shopping"></i></a>
+							</div>
+							<div class="col"><a href="" class="second-nav-icon"><i class="fa-regular fa-user"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<form action="">
+				<div class="row">
+					<div class="col">
+						<p class="add-text">Địa chỉ giao hàng</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="mb-3">
+							<label for="inputName" class="form-lable form-text">Họ và tên</label>
+							<input type="text" class="form-control" id="inputName" placeholder="Nhập tên của bạn">
+						</div>
+					</div>
+					<div class="col">
+						<div class="mb-3">
+							<label for="inputNumber" class="form-lable form-text">Số điện thoại</label>
+							<input type="text" class="form-control" id="inputNumber" placeholder="Nhập số điện thoại của bạn">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="mb-3">
+							<label for="selectCity" class="form-lable form-text">Tỉnh/Thành phố</label>
+							<select class="form-select" id="selectCity" aria-label="">
+								<option selected>Hà Nội</option>
+								<option value="1">One</option>
+								  <option value="2">Two</option>
+								  <option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						<div class="mb-3">
+							<label for="selectDistrict" class="form-lable form-text">Quận/Huyện</label>
+							<select class="form-select" id="selectDistrict" aria-label="">
+								<option selected>Hà Đông</option>
+								<option value="1">One</option>
+								  <option value="2">Two</option>
+								  <option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						<div class="mb-3">
+							<label for="selectWard" class="form-lable form-text">Phường/Xã</label>
+							<select class="form-select" id="selectWard" aria-label="">
+								<option selected>Yên Nghĩa</option>
+								<option value="1">One</option>
+								  <option value="2">Two</option>
+								  <option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="mb-3">
+							<label for="inputAdd" class="form-lable form-text">Địa chỉ cụ thể</label>
+							<input type="text" name="" id="inputAdd" class="form-control" placeholder="Điền thêm địa chỉ cụ thể để người giao hàng tìm thấy bạn dễ hơn!">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<button class="bnt w-100 btn-color" type="button">Xác nhận</button>
+					</div>
+				</div>
+			</form>			
+		</div>
+		</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 			crossorigin="anonymous"></script>
