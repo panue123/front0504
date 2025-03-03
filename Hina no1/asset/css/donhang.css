@@ -1,0 +1,16 @@
+.text{
+    color: #383636;
+	font-size: 14px;
+	font-family: "Archivo", serif;
+    line-height: 28px;
+    text-align: center; 
+}
+.text-2{
+    color: red;
+    font-size: 14px;
+	font-family: "Archivo", serif;
+    line-height: 28px;
+    position: fixed;
+    bottom: 10px!important;
+    
+}
