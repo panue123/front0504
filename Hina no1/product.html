@@ -56,7 +56,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>STT</th>
                         <th>Hình ảnh</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá</th>
@@ -69,7 +69,7 @@
                         <td>1</td>
                         <td><img src = "./assets/img/serum-lam-trang-sang-da.webp" alt = "Serum trắng da"></td>
                         <td>Serum trắng da</td>
-                        <td>1.285.000</td>
+                        <td>₫1.285.000</td>
                         <td>120</td>
                         <td>
                             <button class="btn">✏️ Sửa</button>
@@ -80,7 +80,7 @@
                         <td>2</td>
                         <td><img src = "./assets/img/chong-nang-body.webp" alt = "Kem chống nắng"></td>
                         <td>Kem chống nắng</td>
-                        <td>1.000.000</td>
+                        <td>₫1.000.000</td>
                         <td>20</td>
                         <td>
                             <button class="btn">✏️ Sửa</button>
@@ -93,39 +93,32 @@
     </div>
     
     <!-- Popup -->
-<div id="overlay" class="overlay"></div>
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <h3>Thêm sản phẩm mới</h3>
-        <form id="customProductForm">
-            <label>Tên sản phẩm</label>
-            <input type="text" id="customProductName" required>
-
-            <label>Mô tả sản phẩm</label>
-            <input type = "text" id = "customProductDescription" required>
-
-            <label>Danh mục</label>
-            <select id="customProductCategory" required>
-                <option value="1">Chăm sóc da</option>
-                <option value="2">Trang điểm</option>
-                <option value="3">Nước hoa</option>
-            </select>
-
-            <label>Số lượng</label>
-            <input type="number" id="customProductQuantity" required>
-            
-            <label>Giá cả</label>
-            <input type="number" id="customProductPrice" required>
-
-            <label>Thêm ảnh sản phẩm</label>
-            <input type="file" id="customProductImage" accept="image/*" required>
-
-            <button type="submit" class="save-btn">Lưu</button>
-            <button type="button" class="cancel-btn">Hủy</button>
-        </form>
+    <div id="overlay" class="overlay"></div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h3>Thêm sản phẩm mới</h3>
+            <form id="customProductForm">
+                <label>Tên sản phẩm</label>
+                <input type="text" id="customProductName" required>
+                <label>Mô tả sản phẩm</label>
+                <input type = "text" id = "customProductDescription" required>
+                <label>Danh mục</label>
+                <select id="customProductCategory" required>
+                    <option value="1">Chăm sóc da</option>
+                    <option value="2">Trang điểm</option>
+                    <option value="3">Nước hoa</option>
+                </select>
+                <label>Số lượng</label>
+                <input type="number" id="customProductQuantity" required>            
+                <label>Giá cả</label>
+                <input type="number" id="customProductPrice" required>
+                <label>Thêm ảnh sản phẩm</label>
+                <input type="file" id="customProductImage" accept="image/*" required>
+                <button type="submit" class="save-btn">Lưu</button>
+                <button type="button" class="cancel-btn">Hủy</button>
+            </form>
+        </div>
     </div>
-</div>
-
     <script src = "./assets/js/product.js"></script> 
 </body>
 </html>
