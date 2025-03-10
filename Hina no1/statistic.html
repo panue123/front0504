@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./assets/css/cate.css">
+	<link rel="stylesheet" href="./assets/css/statistic.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
 		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
-	<title>Danh mục</title>
+	<title>Thống kê</title>
 </head>
 <body>
 	<div class="container-fluid px-0">
@@ -29,10 +29,10 @@
 					</div>
 				</div>
 				<div class="row second-nav-row w-100">
-					<div class="col second-nav-text active"><a href="category.html">QUẢN LÝ DANH MỤC 📂</a></div>		
+					<div class="col second-nav-text"><a href="category.html">QUẢN LÝ DANH MỤC 📂</a></div>		
 					<div class="col second-nav-text"><a href="product.html">QUẢN LÝ SẢN PHẨM 🛍</a></div>
 					<div class="col second-nav-text"><a href="order.html">QUẢN LÝ ĐƠN HÀNG 🛒</a></div>
-					<div class="col second-nav-text"><a href="statistic.html">THỐNG KÊ & BÁO CÁO  <i
+					<div class="col second-nav-text active"><a href="statistic.html">THỐNG KÊ & BÁO CÁO  <i
 						class="fa-solid fa-chevron-down"></i></a></div>
 						<div class="col second-nav-text admin-dropdown">
 							<a href="#" class="second-nav-icon">
@@ -47,53 +47,44 @@
 			</div>
 		</div>
 		<div class="container">
-			<h1>Quản lý Danh mục</h1>
-			<div class="actions">
-				<button>➕ Thêm danh mục</button>
-			</div>
-			<table>
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Tên danh mục</th>
-						<th>Thao tác</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Chăm sóc da</td>
-						<td>
-							<button class="btn">👁 Xem sản phẩm</button>
-							<button class="btn">🗑️ Xóa</button>
-							<button class="btn">✏️ Sửa</button>
-							<button class="btn">➕ Thêm sản phẩm</button>
-						</td>
-					</tr>
-   					<tr>
-						<td>2</td>
-						<td>Trang điểm</td>
-						<td>
-							<button class="btn">👁 Xem sản phẩm</button>
-							<button class="btn">🗑️ Xóa</button>
-							<button class="btn">✏️ Sửa</button>
-							<button class="btn">➕ Thêm sản phẩm</button>
-						</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Nước hoa</td>
-						<td>
-							<button class="btn">👁 Xem sản phẩm</button>
-							<button class="btn">🗑️ Xóa</button>
-							<button class="btn">✏️ Sửa</button>
-							<button class="btn">➕ Thêm sản phẩm</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<script src="./assets/js/cate.js"></script>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>TÊN SẢN PHẨM</th>
+                        <th>LOẠI SP</th>
+                        <th>SỐ LƯỢNG</th>
+                        <th>GIÁ TIỀN</th>
+                        <th>THÀNH TIỀN</th>
+                    </tr>
+                </thead>
+                <tbody id="product-table">
+                    <tr>
+                        <td>1</td>
+                        <td>Sữa chống nắng bảo vệ hoàn hảo Anessa...</td>
+                        <td>version new</td>
+                        <td>3</td>
+                        <td>₫586000</td>
+                        <td class="price">₫1.758.000</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Sữa chống nắng bảo vệ hoàn hảo Anessa...</td>
+                        <td>version 2022</td>
+                        <td>2</td>
+                        <td>₫586000</td>
+                        <td class="price">₫1.172.000</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="8">TỔNG</td>
+                        <td id="total-amount"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+	<script src="./assets/js/statistic.js"></script>
 </body>
 </html>
