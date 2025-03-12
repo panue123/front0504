@@ -216,6 +216,7 @@
 	background-color: #333;
 }
 
+
 .product-nav-container {
 	justify-content: center;
 }
@@ -362,4 +363,8 @@
 
 .register .login-btn button {
 	background-color: #fff !important;
+}
+.footer {
+    padding-top: 90px;
+	
 }

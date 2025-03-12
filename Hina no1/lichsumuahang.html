@@ -25,39 +25,48 @@
 </head>
 <body>
     <div class="container-fluid px-0">
-        <div class="header">
-            <div class="navbar">
-                <div class="row first-nav-row mx-0 w-100">
-                    <div class="col ">
-                        <div class="row">
-                            <div class="col-4 nav-search-text">TÌM KIẾM SẢN PHẨM</div>
-                            <div class="col-6 nav-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                        </div>
-                    </div>
-                    <div class="col nav-logo">
-                        <span>hina</span>
-                    </div>
-                </div>
-                <div class="row second-nav-row w-100">
-                    <div class="col second-nav-text"><a href="">TRANG CHỦ</a></div>
-                    <div class="col second-nav-text"><a href="">NHÓM SẢN PHẨM <i
-                                class="fa-solid fa-chevron-down"></i></a>
-                    </div>
-                    <div class="col second-nav-text"><a href="">SẢN PHẨM HOT</a></div>
-                    <div class="col second-nav-text"><a href="">TIN TỨC NỔI BẬT</a></div>
-                    <div class="col second-nav-text"><a href="">GIỚI THIỆU</a></div>
-                    <div class="col second-nav-text">
-                        <div class="row">
-                            <div class="col">
-                                <a href="" class="second-nav-icon"><i class="fa-solid fa-cart-shopping"></i></a>
-                            </div>
-                            <div class="col"><a href="" class="second-nav-icon"><i class="fa-regular fa-user"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="header w-100">
+			<div class="navbar">
+				<div class="row first-nav-row mx-0 w-100">
+					<div class="col ">
+						<div class="row">
+							<div class="col-4 second-nav-text search-box px-3">
+								<input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+							</div>
+							<div class="col-6 nav-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+						</div>
+					</div>
+					<div class="col nav-logo">
+						<span>hina</span>
+					</div>
+				</div>
+				<div class="row second-nav-row w-100 mx-auto">
+					<div class="col second-nav-text active"><a href="" onclick="goToHomePage()">TRANG CHỦ</a></div>
+					<div class="col second-nav-text dropdown">
+						<a href="#" class="dropdown-toggle" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							NHÓM SẢN PHẨM
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="productDropdown">
+							<li><a class="dropdown-item" href="#">Chăm sóc da</a></li>
+							<li><a class="dropdown-item" href="#">Trang điểm</a></li>
+							<li><a class="dropdown-item" href="#">Nước hoa</a></li>
+						</ul>
+					</div>
+					<div class="col second-nav-text" id="products-hot"><a href="">SẢN PHẨM HOT</a></div>
+					<div class="col second-nav-text" id="news"><a href="">TIN TỨC NỔI BẬT</a></div>
+					<div class="col second-nav-text"><a href="">GIỚI THIỆU</a></div>
+					<div class="col second-nav-text">
+						<div class="row">
+							<div class="col">
+								<a href="giohang.html" class="second-nav-icon"><i class="fa-solid fa-cart-shopping"></i></a>
+							</div>
+							<div class="col"><a href="" class="second-nav-icon"><i class="fa-regular fa-user"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
         <div class="content">
             <div class="row">
                 <div class="col"><p class="text">LỊCH SỬ MUA HÀNG</p></div>
@@ -94,8 +103,8 @@
             </table>
         </div>
     </div>
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	<script src="index.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 </body>

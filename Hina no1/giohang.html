@@ -41,9 +41,16 @@
                         </div>
                     </div>
                     <div class="row second-nav-row w-100">
-                        <div class="col second-nav-text"><a href="">TRANG CHỦ</a></div>
-                        <div class="col second-nav-text"><a href="">NHÓM SẢN PHẨM <i
-                                    class="fa-solid fa-chevron-down"></i></a>
+                        <div class="col second-nav-text"><a href="" onclick="goToHomePage()">TRANG CHỦ</a></div>
+                        <div class="col second-nav-text dropdown">
+                            <a href="#" class="dropdown-toggle" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                NHÓM SẢN PHẨM
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                                <li><a class="dropdown-item" href="#">Chăm sóc da</a></li>
+                                <li><a class="dropdown-item" href="#">Trang điểm</a></li>
+                                <li><a class="dropdown-item" href="#">Nước hoa</a></li>
+                            </ul>
                         </div>
                         <div class="col second-nav-text"><a href="">SẢN PHẨM HOT</a></div>
                         <div class="col second-nav-text"><a href="">TIN TỨC NỔI BẬT</a></div>
@@ -195,9 +202,13 @@
                     <div class="col-3 order-width">Tổng thanh toán</div>
                     <div class="col-3 order-width"></div>
                     <div class="col-1 price order-width" style="color: #FFFFFF;"></div>
-                    <div class="col-2 order-width"><button class="order-btn"
-                            style="background-color: #FF737D; color:#FFFFFF;">Đặt hàng</button></div>
-
+                    <div class="col-2 order-width">
+                        <button class="order-btn" 
+                                style="background-color: #FF737D; color:#FFFFFF;" 
+                                onclick="window.location.href='diachigiaohang.html'">
+                            Đặt hàng
+                        </button>
+                    </div>
                 </div>
 
             </div>
@@ -206,6 +217,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
         <script src="./assets/js/giohang.js"></script>
+        <script src="index.js"></script>
 </body>
 
 </html>
