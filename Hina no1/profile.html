@@ -3,108 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chỉnh Sửa Thông Tin Người Dùng</title>
-
-    <!-- Google Fonts -->
+    <title>Hồ Sơ Cá Nhân</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Custom CSS -->
-    <style>
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: #fff1f8;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            background: white;
-            padding: 25px;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 15px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        h2 {
-            color: #d63384;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        label {
-            font-weight: 600;
-            color: #d63384;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #f8c8dc;
-            border-radius: 8px;
-            font-size: 16px;
-            background: #fff5fa;
-            transition: 0.3s;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #d63384;
-            background: #ffe6ee;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            background: #d63384;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #b0276b;
-        }
-
-        .avatar-preview {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #f8c8dc;
-            margin-bottom: 15px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./assets/css/profile.css">
 </head>
 <body>
 
-    <div class="container">
-        <h2>Chỉnh Sửa Thông Tin 💖</h2>
-        <img src="https://i.pravatar.cc/80" class="avatar-preview" alt="User Avatar">
+    <div class="profile-container">
+        <h2>Thông tin cá nhân</h2>
+        <div class="avatar-wrapper">
+            <img src="https://i.pravatar.cc/100" class="avatar-preview" alt="Avatar" id="avatar-preview">
+            <label for="image-upload" class="avatar-edit"><i class="fa-solid fa-camera"></i></label>
+            <input type="file" id="image-upload" accept="image/*">
+        </div>
 
-        <form action="#" method="POST" class="px-0">
+        <form action="#" method="POST">
             <div class="form-group">
                 <label for="username">Tên đăng nhập</label>
-                <input type="text" id="username" name="username" value="Hina" required>
+                <input type="text" id="username" name="username" value="Hina" required readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="fullName">Họ và Tên</label>
+                <input type="text" id="fullName" name="fullName" value="Hina Nguyễn">
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Số điện thoại</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" value="0987654321" required>
             </div>
 
             <div class="form-group">
@@ -113,18 +40,25 @@
             </div>
 
             <div class="form-group">
-                <label for="phone">Số điện thoại</label>
-                <input type="tel" id="phone" name="phone" value="0987654321" required>
+                <label for="address">Địa chỉ</label>
+                <textarea id="address" name="address" rows="3" readonly>Hà Nội, Việt Nam</textarea>
             </div>
 
             <div class="form-group">
-                <label for="address">Địa chỉ</label>
-                <textarea id="address" name="address" rows="3">Hà Nội, Việt Nam</textarea>
+                <label for="password">Thay đổi mật khẩu</label>
+                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu mới">
             </div>
+            
+            <div class="form-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Xác nhận mật khẩu">
+            </div>
+            
+            <p id="passwordError" class="error-text"></p>     
 
-            <button type="submit" class="btn">Lưu Thay Đổi</button>
+            <button type="submit" class="btn-save">Lưu Thay Đổi</button>
         </form>
     </div>
 
+    <script src="./assets/js/profile.js"></script>
 </body>
 </html>

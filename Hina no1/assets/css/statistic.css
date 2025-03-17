@@ -68,7 +68,7 @@ h1 {
     
 }
 
-.admin-dropdown {
+.dropdown {
     position: relative;
     display: inline-block;
 }
@@ -93,7 +93,7 @@ h1 {
     font-size: 14px;
 }
 
-.admin-dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu {
     display: block;
 }
 

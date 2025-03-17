@@ -132,7 +132,7 @@ tbody tr:nth-child(even) {
     background-color: #E67E7E;
 }
 
-.admin-dropdown {
+.dropdown {
     position: relative;
     display: inline-block;
 }
@@ -157,7 +157,7 @@ tbody tr:nth-child(even) {
     font-size: 14px;
 }
 
-.admin-dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu {
     display: block;
 }
 

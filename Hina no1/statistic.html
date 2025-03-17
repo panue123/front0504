@@ -22,40 +22,39 @@
 <body>
 	<div class="container-fluid px-0">
 		<div class="header">
-			<div class="navbar">
-				<div class="row first-nav-row mx-0 w-100">				
-					<div class="col nav-logo">
-						<span>hina</span>
-					</div>
-				</div>
-				<div class="row second-nav-row w-100">
-					<div class="col second-nav-text"><a href="category.html">QUẢN LÝ DANH MỤC 📂</a></div>		
-					<div class="col second-nav-text"><a href="product.html">QUẢN LÝ SẢN PHẨM 🛍</a></div>
-					<div class="col second-nav-text"><a href="order.html">QUẢN LÝ ĐƠN HÀNG 🛒</a></div>
-					<div class="col second-nav-text dropdown">
-                        <a href="#" class="dropdown-toggle" id="orderStatisticsDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            THỐNG KÊ & BÁO CÁO
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="orderStatisticsDropdown">
-                            <li><a class="dropdown-item" href="statistic.html">Thống kê theo doanh thu ngày</a></li>
-                            <li><a class="dropdown-item" href="statistic.html">Thống kê theo doanh thu tháng</a></li>
-                            <li><a class="dropdown-item" href="statistic.html">Thống kê theo SLSP bán ra</a></li>
-                        </ul>
+            <div class="navbar">
+                <div class="row first-nav-row mx-0 w-100">
+                    <div class="col nav-logo">
+                        <span>hina</span>
+                    </div>
+                </div>
+                <div class="row second-nav-row w-100">
+                    <div class="col second-nav-text"><a href="category.html">QUẢN LÝ DANH MỤC 📂</a></div>
+                    <div class="col second-nav-text"><a href="product.html">QUẢN LÝ SẢN PHẨM 🛍</a></div>
+                    <div class="col second-nav-text"><a href="order.html">QUẢN LÝ ĐƠN HÀNG 🛒</a></div>
+                    <div class="col second-nav-text dropdown active">
+                        <a href="#" class="dropdown-toggle">
+                            THỐNG KÊ & BÁO CÁO 
+						</a>
+						<div class="dropdown-menu">
+							<a href="statistic.html">Theo doanh thu ngày</a>
+							<a href="statistic.html">Theo doanh thu tháng</a>
+							<a href="statistic.html">Theo số lượng bán ra</a>
+						</div>
                     </div>
                     <div class="col second-nav-text dropdown">
-                        <a href="#" class="dropdown-toggle second-nav-icon" id="adminDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle second-nav-icon">
                             <i class="fa-regular fa-user"></i> Admin
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                            <li><a class="dropdown-item" href="profile.html">Thông tin cá nhân</a></li>
-                            <li><a class="dropdown-item" href="index.html">Đăng xuất</a></li>
-                        </ul>
+                        <div class="dropdown-menu">
+							<a href="profile.html">Thông tin cá nhân</a>
+							<a href="index.html">Đăng xuất</a>
+						</div>
                     </div>
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
+        
 		<div class="container">
             <table>
                 <thead>
@@ -96,8 +95,5 @@
         </div>
     </div>
 	<script src="./assets/js/statistic.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-			crossorigin="anonymous"></script>
 </body>
 </html>
