@@ -34,17 +34,27 @@
 					<div class="col second-nav-text"><a href="category.html">QUẢN LÝ DANH MỤC 📂</a></div>		
 					<div class="col second-nav-text active"><a href="product.html">QUẢN LÝ SẢN PHẨM 🛍</a></div>
 					<div class="col second-nav-text"><a href="order.html">QUẢN LÝ ĐƠN HÀNG 🛒</a></div>
-					<div class="col second-nav-text"><a href="statistic.html">THỐNG KÊ & BÁO CÁO  <i
-						class="fa-solid fa-chevron-down"></i></a></div>
-						<div class="col second-nav-text admin-dropdown">
-							<a href="#" class="second-nav-icon">
-								<i class="fa-regular fa-user"></i> Admin
-							</a>
-							<div class="dropdown-menu">
-								<a href="profile.html">Thông tin cá nhân</a>
-								<a href="index.html">Đăng xuất</a>
-							</div>
-						</div>
+					<div class="col second-nav-text dropdown">
+                        <a href="#" class="dropdown-toggle" id="orderStatisticsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            THỐNG KÊ & BÁO CÁO
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="orderStatisticsDropdown">
+                            <li><a class="dropdown-item" href="statistic.html">Thống kê theo doanh thu ngày</a></li>
+                            <li><a class="dropdown-item" href="statistic.html">Thống kê theo doanh thu tháng</a></li>
+                            <li><a class="dropdown-item" href="statistic.html">Thống kê theo SLSP bán ra</a></li>
+                        </ul>
+                    </div>
+                    <div class="col second-nav-text dropdown">
+                        <a href="#" class="dropdown-toggle second-nav-icon" id="adminDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-regular fa-user"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                            <li><a class="dropdown-item" href="profile.html">Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item" href="index.html">Đăng xuất</a></li>
+                        </ul>
+                    </div>
 				</div>
             </div>  
         </div>
@@ -120,5 +130,8 @@
         </div>
     </div>
     <script src = "./assets/js/product.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"></script>
 </body>
 </html>
