@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/product.css">
+    <link rel="stylesheet" href="./assets/css/user.css">
     <link rel="stylesheet" href="./assets/css/popup.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -18,7 +18,7 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
-    <title>Sản phẩm</title>
+    <title>Quản lý Người dùng</title>
 </head>
 
 <body>
@@ -32,69 +32,68 @@
                 </div>
                 <div class="row second-nav-row w-100">
                     <div class="col second-nav-text"><a href="category.html">QUẢN LÝ DANH MỤC 📂</a></div>
-                    <div class="col second-nav-text active"><a href="product.html">QUẢN LÝ SẢN PHẨM 🛍</a></div>
+                    <div class="col second-nav-text"><a href="product.html">QUẢN LÝ SẢN PHẨM 🛍</a></div>
                     <div class="col second-nav-text"><a href="order.html">QUẢN LÝ ĐƠN HÀNG 🛒</a></div>
                     <div class="col second-nav-text dropdown">
                         <a href="#" class="dropdown-toggle">
                             THỐNG KÊ & BÁO CÁO 
-						</a>
-						<div class="dropdown-menu">
-							<a href="statistic.html">Theo doanh thu ngày</a>
-							<a href="statistic.html">Theo doanh thu tháng</a>
-							<a href="statistic.html">Theo số lượng bán ra</a>
-						</div>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="statistic.html">Theo doanh thu ngày</a>
+                            <a href="statistic.html">Theo doanh thu tháng</a>
+                            <a href="statistic.html">Theo số lượng bán ra</a>
+                        </div>
                     </div>
-                    <div class="col second-nav-text"><a href="user.html">QUẢN LÝ NGƯỜI DÙNG 🛡️</a></div>
+                    <div class="col second-nav-text active"><a href="user.html">QUẢN LÝ NGƯỜI DÙNG 🛡️</a></div>
                     <div class="col second-nav-text dropdown">
                         <a href="#" class="dropdown-toggle second-nav-icon">
                             <i class="fa-regular fa-user"></i> Admin
                         </a>
                         <div class="dropdown-menu">
-							<a href="profile.html">Thông tin cá nhân</a>
-							<a href="index.html">Đăng xuất</a>
-						</div>
+                            <a href="profile.html">Thông tin cá nhân</a>
+                            <a href="index.html">Đăng xuất</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="container">
-            <h1>Quản lý Sản phẩm</h1>
-            <div class="actions">
-                <button>➕ Thêm sản phẩm</button>
-            </div>
+            <h1>Danh sách người dùng</h1>
             <table>
                 <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Hình ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
+                        <th>Họ và Tên</th>
+                        <th>Email</th>
+                        <th>SĐT</th>
+                        <th>Vai trò</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td><img src = "./assets/img/serum-lam-trang-sang-da.webp" alt = "Serum trắng da"></td>
-                        <td>Serum trắng da</td>
-                        <td>₫1.285.000</td>
-                        <td>120</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>nguyenvana@example.com</td>
+                        <td>0918759123</td>
+                        <td>Khách hàng</td>
                         <td>
                             <button class="btn">✏️ Sửa</button>
                             <button class="btn">🗑️ Xóa</button>
+                            <button class="btn reset-password-btn" data-user-id="1">🔑 Đặt lại mật khẩu</button>
                         </td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><img src = "./assets/img/chong-nang-body.webp" alt = "Kem chống nắng"></td>
-                        <td>Kem chống nắng</td>
-                        <td>₫1.000.000</td>
-                        <td>20</td>
+                        <td>Trần Thị B</td>
+                        <td>tranthib@example.com</td>
+                        <td>0981121235</td>
+                        <td>Quản trị viên</td>
                         <td>
                             <button class="btn">✏️ Sửa</button>
                             <button class="btn">🗑️ Xóa</button>
+                            <button class="btn reset-password-btn" data-user-id="1">🔑 Đặt lại mật khẩu</button>
                         </td>
                     </tr>
                 </tbody>
@@ -102,33 +101,23 @@
         </div>
     </div>
     
-    <!-- Popup -->
+    <!-- Popup đặt lại mật khẩu -->
     <div id="overlay" class="overlay"></div>
     <div id="popup" class="popup">
         <div class="popup-content">
-            <h3>Thêm sản phẩm mới</h3>
-            <form id="customProductForm">
-                <label>Tên sản phẩm</label>
-                <input type="text" id="customProductName" required>
-                <label>Mô tả sản phẩm</label>
-                <input type = "text" id = "customProductDescription" required>
-                <label>Danh mục</label>
-                <select id="customProductCategory" required>
-                    <option value="1">Chăm sóc da</option>
-                    <option value="2">Trang điểm</option>
-                    <option value="3">Nước hoa</option>
-                </select>
-                <label>Số lượng</label>
-                <input type="number" id="customProductQuantity" required>            
-                <label>Giá cả</label>
-                <input type="number" id="customProductPrice" required>
-                <label>Thêm ảnh sản phẩm</label>
-                <input type="file" id="customProductImage" accept="image/*" required>
-                <button type="submit" class="save-btn">Lưu</button>
+            <h3>Đặt lại mật khẩu</h3>
+            <form id="resetPasswordForm">
+                <input type="hidden" id="userId">
+                <label>Mật khẩu mới</label>
+                <input type="password" id="newPassword" required>
+                <label>Xác nhận mật khẩu</label>
+                <input type="password" id="confirmPassword" required>
+                <button type="submit" class="save-btn">Cập nhật</button>
                 <button type="button" class="cancel-btn">Hủy</button>
             </form>
         </div>
     </div>
-    <script src = "./assets/js/product.js"></script>
+
+    <script src = "./assets/js/user.js"></script>
 </body>
 </html>
