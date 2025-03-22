@@ -14,17 +14,21 @@ const storage = new CloudinaryStorage({
     cloudinary,
     params: {
         folder: "products",
-        allowed_formats: ["jpg", "png", "jpeg"],
+        allowed_formats: ["jpg", "png", "jpeg", "webp"],
     },
 });
 
 const upload = multer({ storage });
 
-router.post("/upload", upload.single("image"), async (req, res) => {
+router.post("/", upload.single("image"), async (req, res) => {
     try {
+        if (!req.file) {
+            return res.status(400).json({ message: "Không có file ảnh nào được tải lên" });
+        }
         res.json({ imageUrl: req.file.path });
     } catch (error) {
-        res.status(500).json({ message: "Lỗi khi upload ảnh" });
+        console.error("Lỗi upload ảnh:", error);
+        res.status(500).json({ message: "Lỗi khi upload ảnh", error });
     }
 });
 
