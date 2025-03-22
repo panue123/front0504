@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./assets/css/cate.css">
+	<link rel="stylesheet" href="./assets/css/popup.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,8 +62,8 @@
 		<div class="container">
 			<h1>Quản lý Danh mục</h1>
 			<div class="actions">
-				<button>➕ Thêm danh mục</button>
-			</div>
+                <button id="openAddCategory">➕ Thêm danh mục</button>
+            </div>
 			<table>
 				<thead>
 					<tr>
@@ -71,42 +72,74 @@
 						<th>Thao tác</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Chăm sóc da</td>
-						<td>
-							<button class="btn">👁 Xem sản phẩm</button>
-							<button class="btn">🗑️ Xóa</button>
-							<button class="btn">✏️ Sửa</button>
-							<button class="btn">➕ Thêm sản phẩm</button>
-						</td>
-					</tr>
-   					<tr>
-						<td>2</td>
-						<td>Trang điểm</td>
-						<td>
-							<button class="btn">👁 Xem sản phẩm</button>
-							<button class="btn">🗑️ Xóa</button>
-							<button class="btn">✏️ Sửa</button>
-							<button class="btn">➕ Thêm sản phẩm</button>
-						</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Nước hoa</td>
-						<td>
-							<button class="btn">👁 Xem sản phẩm</button>
-							<button class="btn">🗑️ Xóa</button>
-							<button class="btn">✏️ Sửa</button>
-							<button class="btn">➕ Thêm sản phẩm</button>
-						</td>
-					</tr>
-				</tbody>
+				<tbody id="category-list"> 
+                    <!-- Dữ liệu từ backend sẽ được thêm vào đây -->
+                </tbody>
 			</table>
 		</div>
 	</div>
+
+	<!-- Popup thêm danh mục -->
+	<div id="overlay-add-category" class="overlay"></div>
+	<div id="popup-add-category" class="popup">
+		<div class="popup-content">
+			<h3>Thêm danh mục mới</h3>
+			<form id="addCategoryForm">
+				<label>Tên danh mục</label>
+				<input type="text" id="categoryName" required>
+				<button type="submit" class="save-btn">Lưu</button>
+				<button type="button" class="cancel-btn" id="cancelAddCategory">Hủy</button>
+			</form>
+		</div>
+	</div>
+
+	<!-- Popup sửa danh mục -->
+	<div id="overlay-edit-category" class="overlay"></div>
+	<div id="popup-edit-category" class="popup">
+		<div class="popup-content">
+			<h3>Sửa tên danh mục</h3>
+			<form id="editCategoryForm">
+				<label>Tên danh mục</label>
+				<input type="text" id="editCategoryName" required>
+				<button type="submit" class="save-btn">Lưu</button>
+				<button type="button" class="cancel-btn" id="cancelEditCategory">Hủy</button>
+			</form>
+		</div>
+	</div>
+	
+	<!-- Popup xóa danh mục -->
+	<div id="overlay-delete-category" class="overlay"></div>
+	<div id="confirm-delete-popup" class="popup">
+		<div class="popup-content">
+			<h3>Bạn có muốn xóa danh mục này?</h3>
+			<form id="deleteCategoryForm">
+				<button type="button" class="save-btn" id="confirmDeleteCategory">Xóa</button>
+       			<button type="button" class="cancel-btn" id="cancelDeleteCategory">Hủy</button>
+			</form>
+		</div>
+	</div>
+	
+	<!-- Popup thêm sản phẩm vào danh mục -->
+	<div id="overlay-add-product" class="overlay"></div>
+	<div id="popup-add-product-category" class="popup">
+		<div class="popup-content">
+			<h3>Thêm sản phẩm vào danh mục</h3>
+			<form id="addProductToCategoryForm">
+				<label>Chọn sản phẩm</label>
+				<select id="productSelect">
+					<option value="">-- Chọn sản phẩm --</option>
+				</select>
+				<button type="button" id="addProductBtn">Thêm</button>
+				<!-- Danh sách sản phẩm đã chọn -->
+				<ul id="selectedProducts"></ul>
+				<button type="submit" class="save-btn">Lưu</button>
+				<button type="button" class="cancel-btn" id="cancelAddProduct">Hủy</button>
+			</form>
+		</div>
+	</div>
+	
 	<script src="./assets/js/cate.js"></script>
+	<script src="./assets/js/cate2.js"></script>
 	
 </body>
 </html>

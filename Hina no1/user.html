@@ -71,31 +71,8 @@
                         <th>Thao tác</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Nguyễn Văn A</td>
-                        <td>nguyenvana@example.com</td>
-                        <td>0918759123</td>
-                        <td>Khách hàng</td>
-                        <td>
-                            <button class="btn">✏️ Sửa</button>
-                            <button class="btn">🗑️ Xóa</button>
-                            <button class="btn reset-password-btn" data-user-id="1">🔑 Đặt lại mật khẩu</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Trần Thị B</td>
-                        <td>tranthib@example.com</td>
-                        <td>0981121235</td>
-                        <td>Quản trị viên</td>
-                        <td>
-                            <button class="btn">✏️ Sửa</button>
-                            <button class="btn">🗑️ Xóa</button>
-                            <button class="btn reset-password-btn" data-user-id="1">🔑 Đặt lại mật khẩu</button>
-                        </td>
-                    </tr>
+                <tbody id="userTableBody">
+                    <!-- Dữ liệu người dùng sẽ được render từ JS -->
                 </tbody>
             </table>
         </div>
@@ -117,7 +94,7 @@
             </form>
         </div>
     </div>
-
-    <script src = "./assets/js/user.js"></script>
+    
+    <script src="./assets/js/user.js"></script>
 </body>
 </html>

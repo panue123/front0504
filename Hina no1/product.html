@@ -74,29 +74,8 @@
                         <th>Thao tác</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><img src = "./assets/img/serum-lam-trang-sang-da.webp" alt = "Serum trắng da"></td>
-                        <td>Serum trắng da</td>
-                        <td>₫1.285.000</td>
-                        <td>120</td>
-                        <td>
-                            <button class="btn">✏️ Sửa</button>
-                            <button class="btn">🗑️ Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><img src = "./assets/img/chong-nang-body.webp" alt = "Kem chống nắng"></td>
-                        <td>Kem chống nắng</td>
-                        <td>₫1.000.000</td>
-                        <td>20</td>
-                        <td>
-                            <button class="btn">✏️ Sửa</button>
-                            <button class="btn">🗑️ Xóa</button>
-                        </td>
-                    </tr>
+                <tbody id="product-list"> 
+                    <!-- Dữ liệu từ backend sẽ được thêm vào đây -->
                 </tbody>
             </table>
         </div>
@@ -120,8 +99,10 @@
                 </select>
                 <label>Số lượng</label>
                 <input type="number" id="customProductQuantity" required>            
-                <label>Giá cả</label>
+                <label>Giá gốc</label>
                 <input type="number" id="customProductPrice" required>
+                <label>Giá đã giảm</label>
+                <input type="number" id="customProductPriceDiscount" required>
                 <label>Thêm ảnh sản phẩm</label>
                 <input type="file" id="customProductImage" accept="image/*" required>
                 <button type="submit" class="save-btn">Lưu</button>
