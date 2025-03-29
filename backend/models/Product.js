@@ -10,7 +10,7 @@ const Product = sequelize.define(
         image_url: { type: DataTypes.STRING },
         name: { type: DataTypes.STRING, allowNull: false },
         price: { type: DataTypes.FLOAT, allowNull: false },
-        pricediscount: { type: DataTypes.FLOAT, allowNull: true },
+        pricediscount: { type: DataTypes.FLOAT, defaultValue: 0 },
         description: { type: DataTypes.TEXT },
         stock: { type: DataTypes.INTEGER, defaultValue: 0 },
         is_deleted: { type: DataTypes.BOOLEAN, defaultValue: false }
