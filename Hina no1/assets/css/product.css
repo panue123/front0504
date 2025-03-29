@@ -173,3 +173,35 @@ tbody tr:nth-child(even) {
     background-color: #f8cdd2;
     color: #fff;
 }
+
+.popup-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.crop-btn {
+    background-color: #f8cdd2;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+}
+
+.crop-btn:hover {
+    background-color: #f8cdd2;
+}
+
+.crop-btn:first-child {
+    background-color: #f8cdd2;
+    color: #fff;
+}
+
+.crop-btn:last-child {
+    background-color: #f8cdd2;
+    color: #fff;
+}

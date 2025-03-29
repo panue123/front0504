@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirmDeleteCategory = document.getElementById("confirmDeleteCategory");
     const cancelDeleteCategory = document.getElementById("cancelDeleteCategory");
 
+    // Khởi tạo các biến
+    let currentCategoryId = null;
+    let selectedProducts = new Set();
+
     // Hàm đóng/mở popup chung
     function togglePopup(popup, overlay, isOpen) {
         overlay.style.display = isOpen ? "block" : "none";
@@ -158,27 +162,180 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     cancelDeleteCategory.addEventListener("click", closeDeleteCategoryPopup);
 
+    // Hàm lấy danh sách sản phẩm từ API
+    async function fetchProducts() {
+        try {
+            const response = await fetch('http://localhost:5000/api/products');
+            const products = await response.json();
+            return products;
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            return [];
+        }
+    }
+
+    // Hàm lấy sản phẩm theo danh mục
+    async function fetchProductsByCategory(categoryId) {
+        try {
+            const response = await fetch(`http://localhost:5000/api/categories/${categoryId}/products`);
+            const products = await response.json();
+            return products;
+        } catch (error) {
+            console.error('Error fetching products by category:', error);
+            return [];
+        }
+    }
+
+    // Hàm thêm sản phẩm vào danh mục
+    async function addProductToCategory(categoryId, productId) {
+        try {
+            const response = await fetch(`http://localhost:5000/api/categories/${categoryId}/products`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ productId })
+            });
+            return response.ok;
+        } catch (error) {
+            console.error('Error adding product to category:', error);
+            return false;
+        }
+    }
+
+    // Hàm xóa sản phẩm khỏi danh mục
+    async function removeProductFromCategory(categoryId, productId) {
+        try {
+            const response = await fetch(`http://localhost:5000/api/categories/${categoryId}/products/${productId}`, {
+                method: 'DELETE'
+            });
+            return response.ok;
+        } catch (error) {
+            console.error('Error removing product from category:', error);
+            return false;
+        }
+    }
+
+    // Hàm hiển thị popup thêm sản phẩm
+    async function showAddProductPopup(categoryId) {
+        currentCategoryId = categoryId;
+        const products = await fetchProducts();
+        const productSelect = document.getElementById('productSelect');
+        const selectedProductsList = document.getElementById('selectedProducts');
+        
+        // Xóa các options cũ
+        productSelect.innerHTML = '<option value="">-- Chọn sản phẩm --</option>';
+        selectedProductsList.innerHTML = '';
+        selectedProducts.clear();
+
+        // Thêm các options mới
+        products.forEach(product => {
+            const option = document.createElement('option');
+            option.value = product.id;
+            option.textContent = product.name;
+            productSelect.appendChild(option);
+        });
+
+        // Hiển thị popup
+        document.getElementById('overlay-add-product').style.display = 'block';
+        document.getElementById('popup-add-product-category').style.display = 'block';
+    }
+
+    // Hàm hiển thị popup xem sản phẩm
+    async function showViewProductsPopup(categoryId) {
+        currentCategoryId = categoryId;
+        const products = await fetchProductsByCategory(categoryId);
+        const productList = document.getElementById('productList');
+        
+        // Xóa danh sách cũ
+        productList.innerHTML = '';
+
+        // Thêm danh sách mới
+        products.forEach(product => {
+            const productItem = document.createElement('div');
+            productItem.className = 'product-item';
+            productItem.innerHTML = `
+                <input type="checkbox" value="${product.id}">
+                <span>${product.name}</span>
+            `;
+            productList.appendChild(productItem);
+        });
+
+        // Hiển thị popup
+        document.getElementById('overlay-view-product').style.display = 'block';
+        document.getElementById('popup-view-product').style.display = 'block';
+    }
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+        // Xử lý thêm sản phẩm vào danh mục
+        const addProductBtn = document.getElementById('addProductBtn');
+        const productSelect = document.getElementById('productSelect');
+        const selectedProductsList = document.getElementById('selectedProducts');
+        const addProductToCategoryForm = document.getElementById('addProductToCategoryForm');
+
+        addProductBtn.addEventListener('click', () => {
+            const productId = productSelect.value;
+            if (productId && !selectedProducts.has(productId)) {
+                selectedProducts.add(productId);
+                const li = document.createElement('li');
+                li.textContent = productSelect.options[productSelect.selectedIndex].text;
+                li.dataset.productId = productId;
+                selectedProductsList.appendChild(li);
+                productSelect.value = '';
+            }
+        });
+
+        addProductToCategoryForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (currentCategoryId && selectedProducts.size > 0) {
+                for (const productId of selectedProducts) {
+                    await addProductToCategory(currentCategoryId, productId);
+                }
+                alert('Thêm sản phẩm thành công!');
+                closeAddProductPopup();
+            }
+        });
+
+        // Xử lý xem sản phẩm trong danh mục
+        const removeProductBtn = document.getElementById('removeProductBtn');
+        const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+
+        removeProductBtn.addEventListener('click', async () => {
+            const checkboxes = document.querySelectorAll('#productList input[type="checkbox"]:checked');
+            for (const checkbox of checkboxes) {
+                const productId = checkbox.value;
+                await removeProductFromCategory(currentCategoryId, productId);
+            }
+            showViewProductsPopup(currentCategoryId); // Refresh danh sách
+        });
+
+        clearSelectionBtn.addEventListener('click', () => {
+            const checkboxes = document.querySelectorAll('#productList input[type="checkbox"]');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+        });
+    });
+
+    // Hàm đóng popup thêm sản phẩm
+    function closeAddProductPopup() {
+        document.getElementById('overlay-add-product').style.display = 'none';
+        document.getElementById('popup-add-product-category').style.display = 'none';
+    }
+
+    // Hàm đóng popup xem sản phẩm
+    function closeViewProductsPopup() {
+        document.getElementById('overlay-view-product').style.display = 'none';
+        document.getElementById('popup-view-product').style.display = 'none';
+    }
+
+    // Thêm event listeners cho nút đóng popup
+    document.getElementById('cancelAddProduct').addEventListener('click', closeAddProductPopup);
+    document.getElementById('cancelViewProduct').addEventListener('click', closeViewProductsPopup);
+
     // Load danh mục khi trang được tải
     loadCategories();
 });
 
-
-
-// /** 🏷 Xóa danh mục */
-//     async function deleteCategory(id) {
-//         if (!confirm("Bạn có chắc chắn muốn xóa danh mục này?")) return;
-
-//         try {
-//             const response = await fetch(`http://localhost:5000/api/categories/${id}`, { method: "DELETE" });
-//             if (!response.ok) throw new Error("⚠ Lỗi xóa danh mục");
-
-//             alert("🗑️ Danh mục đã được xóa!");
-//             location.reload();
-//         } catch (error) {
-//             console.error("❌ Lỗi xóa danh mục:", error);
-//             alert("⚠ Không thể xóa danh mục!");
-//         }
-//     }
 
 //     /** 🏷 Xem sản phẩm trong danh mục */
 //     async function viewProducts(categoryId) {

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const categoryTable = document.getElementById("category-list");
     
-    //Các phần tử lý thêm mới danh mục
+    //Các phần tử xử lý thêm mới danh mục
     const overlayAddCategory = document.getElementById("overlay-add-category");
     const popupAddCategory = document.getElementById("popup-add-category");
     const openPopupAddCategoryBtn = document.getElementById("openAddCategory");
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 alert("🎉 Danh mục đã được thêm thành công!");
-                closeAddCategoryPopup(popupAddCategory, overlayAddCategory);
+                closeAddCategoryPopup();
                 categoryNameInput.value = "";
                 loadCategories();
             } catch (error) {
