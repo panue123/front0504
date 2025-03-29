@@ -13,7 +13,7 @@ const checkIdParam = (req, res, next) => {
 };
 
 // Routes quản lý sản phẩm
-router.post('/add', upload.single('image'), productController.createProduct); // Thêm sản phẩm (có upload ảnh)
+router.post('/', upload.single('image'), productController.createProduct); // Thêm sản phẩm (có upload ảnh)
 router.get('/', productController.getAllProducts); // Lấy danh sách sản phẩm
 router.get('/:id', checkIdParam, productController.getProductById); // Lấy chi tiết sản phẩm
 router.put('/:id', checkIdParam, upload.single('image'), productController.updateProduct); // Cập nhật sản phẩm

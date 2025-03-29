@@ -17,22 +17,47 @@ exports.getAllProducts = async (req, res) => {
 
 // Tạo sản phẩm mới
 exports.createProduct = async (req, res) => {
+    let tempFilePath = null;
     try {
         console.log("📸 File nhận được:", req.file);
+        console.log("📦 Request body:", req.body);
 
         if (!req.file) {
             return res.status(400).json({ message: 'Vui lòng upload ảnh!' });
         }
-        // Upload ảnh lên Cloudinary
-        const result = await cloudinary.uploader.upload(req.file.path, { 
-            folder: 'products',
-            transformation: { width: 500, height: 500, crop: 'fill' }
-        });
+
+        tempFilePath = req.file.path;
+        let cloudinaryResult;
+        try {
+            // Upload ảnh lên Cloudinary
+            cloudinaryResult = await cloudinary.uploader.upload(tempFilePath, { 
+                folder: 'products',
+                transformation: { width: 500, height: 500, crop: 'fill' }
+            });
+            console.log("☁️ Cloudinary upload result:", cloudinaryResult);
+        } catch (cloudinaryError) {
+            console.error("❌ Lỗi upload lên Cloudinary:", cloudinaryError);
+            return res.status(500).json({ 
+                message: 'Lỗi khi upload ảnh lên Cloudinary', 
+                error: cloudinaryError.message 
+            });
+        }
 
         // Lấy dữ liệu từ request body
         const { name, price, pricediscount, stock, description, category_id } = req.body;
-        if (!name || !price || !stock || !category_id) {
-            return res.status(400).json({ message: 'Vui lòng nhập đầy đủ thông tin sản phẩm!' });
+        
+        // Validate dữ liệu
+        if (!name || !price || !stock || !category_id || !description) {
+            return res.status(400).json({ 
+                message: 'Vui lòng nhập đầy đủ thông tin sản phẩm!',
+                missingFields: {
+                    name: !name,
+                    price: !price,
+                    stock: !stock,
+                    category_id: !category_id,
+                    description: !description
+                }
+            });
         }
         
         // Kiểm tra category_id có tồn tại không
@@ -41,20 +66,46 @@ exports.createProduct = async (req, res) => {
             return res.status(400).json({ message: 'Danh mục không hợp lệ!' });
         }
 
-        // Lưu sản phẩm vào database
-        const newProduct = await Product.create({
+        // Chuyển đổi kiểu dữ liệu
+        const priceValue = parseFloat(price);
+        const productData = {
             name,            
             description,
-            category_id,
-            stock,
-            price,
-            pricediscount: pricediscount || 0,            
-            image_url: result.secure_url, // Lưu link ảnh vào database
-        });
+            category_id: parseInt(category_id),
+            stock: parseInt(stock),
+            price: priceValue,
+            pricediscount: pricediscount ? parseFloat(pricediscount) : priceValue,            
+            image_url: cloudinaryResult.secure_url,
+            is_deleted: false,
+        };
+        console.log("📝 Product data to save:", productData);
 
-        res.status(201).json({ message: 'Thêm sản phẩm thành công!', product: newProduct });
+        // Lưu sản phẩm vào database
+        const newProduct = await Product.create(productData);
+        console.log("✅ Product saved successfully:", newProduct);
+
+        // Lấy lại sản phẩm vừa tạo để đảm bảo dữ liệu chính xác
+        const savedProduct = await Product.findByPk(newProduct.id);
+        console.log("📦 Saved product data:", savedProduct.toJSON());
+
+        res.status(201).json({ message: 'Thêm sản phẩm thành công!', product: savedProduct });
     } catch (error) {
-        res.status(500).json({ message: 'Lỗi thêm sản phẩm', error: error.message });
+        console.error("❌ Error creating product:", error);
+        res.status(500).json({ 
+            message: 'Lỗi thêm sản phẩm', 
+            error: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    } finally {
+        // Xóa file tạm trong mọi trường hợp
+        if (tempFilePath) {
+            try {
+                require('fs').unlinkSync(tempFilePath);
+                console.log("🧹 Đã xóa file tạm:", tempFilePath);
+            } catch (unlinkError) {
+                console.error("⚠️ Lỗi khi xóa file tạm:", unlinkError);
+            }
+        }
     }
 };
 
