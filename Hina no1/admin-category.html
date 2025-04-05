@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./assets/css/cate.css">
+	<link rel="stylesheet" href="./assets/css/product.css">
 	<link rel="stylesheet" href="./assets/css/popup.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -18,11 +18,10 @@
 		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
-	<title>Danh mục</title>
+	<title>Quản lý Danh mục</title>
 </head>
 
 <body>
-
     <div class="container-fluid px-0">
         <div class="header">
             <div class="navbar">
@@ -32,54 +31,46 @@
                     </div>
                 </div>
                 <div class="row second-nav-row w-100">
-                    <div class="col second-nav-text active"><a href="category.html">QUẢN LÝ DANH MỤC 📂</a></div>
-                    <div class="col second-nav-text"><a href="product.html">QUẢN LÝ SẢN PHẨM 🛍</a></div>
-                    <div class="col second-nav-text"><a href="order.html">QUẢN LÝ ĐƠN HÀNG 🛒</a></div>
-                    <div class="col second-nav-text dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            THỐNG KÊ & BÁO CÁO 
-						</a>
-						<div class="dropdown-menu">
-							<a href="statistic.html">Theo doanh thu ngày</a>
-							<a href="statistic.html">Theo doanh thu tháng</a>
-							<a href="statistic.html">Theo số lượng bán ra</a>
-						</div>
-                    </div>
-					<div class="col second-nav-text"><a href="user.html">QUẢN LÝ NGƯỜI DÙNG 🛡️</a></div>
+                    <div class="col second-nav-text"><a href="admin-statistic.html"><i class="fas fa-chart-line"></i> THỐNG KÊ & BÁO CÁO</a></div>
+                    <div class="col second-nav-text active"><a href="admin-category.html"><i class="fas fa-tags"></i> QUẢN LÝ DANH MỤC</a></div>
+                    <div class="col second-nav-text"><a href="admin-product.html"><i class="fas fa-box"></i> QUẢN LÝ SẢN PHẨM</a></div>
+                    <div class="col second-nav-text"><a href="admin-order.html"><i class="fas fa-shopping-cart"></i> QUẢN LÝ ĐƠN HÀNG</a></div>
+                    <div class="col second-nav-text"><a href="admin-user.html"><i class="fas fa-users"></i> QUẢN LÝ NGƯỜI DÙNG</a></div>       
                     <div class="col second-nav-text dropdown">
                         <a href="#" class="dropdown-toggle second-nav-icon">
                             <i class="fa-regular fa-user"></i> Admin
                         </a>
                         <div class="dropdown-menu">
-							<a href="profile.html">Thông tin cá nhân</a>
-							<a href="index.html">Đăng xuất</a>
-						</div>
+                            <a href="profile.html">Thông tin cá nhân</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-		<div class="container">
-			<h1>Quản lý Danh mục</h1>
-			<div class="actions">
-                <button id="openAddCategory">➕ Thêm danh mục</button>
-            </div>
-			<table>
-				<thead>
-					<tr>
-						<th>STT</th>
-						<th>Tên danh mục</th>
-						<th>Thao tác</th>
-					</tr>
-				</thead>
-				<tbody id="category-list"> 
-                    <!-- Dữ liệu từ backend sẽ được thêm vào đây -->
-                </tbody>
-			</table>
-		</div>
-	</div>
+    <div class="container">
+        <h1>Quản lý danh mục</h1>
+        <div class="actions">
+            <button id="openAddCategory"><i class="fas fa-plus"></i> Thêm danh mục</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên danh mục</th>
+                    <th>Mô tả</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="category-list"> 
+                <!-- Dữ liệu từ backend sẽ được thêm vào đây -->
+            </tbody>
+        </table>
+    </div>
 
-	<!-- Popup thêm danh mục -->
+    <!-- Popup thêm danh mục -->
 	<div id="overlay-add-category" class="overlay"></div>
 	<div id="popup-add-category" class="popup">
 		<div class="popup-content">
@@ -87,6 +78,8 @@
 			<form id="addCategoryForm">
 				<label>Tên danh mục</label>
 				<input type="text" id="categoryName" required>
+				<label>Mô tả</label>
+				<input type="text" id="categoryDescription" required>
 				<button type="submit" class="save-btn">Lưu</button>
 				<button type="button" class="cancel-btn" id="cancelAddCategory">Hủy</button>
 			</form>
@@ -101,6 +94,8 @@
 			<form id="editCategoryForm">
 				<label>Tên danh mục</label>
 				<input type="text" id="editCategoryName" required>
+                <label>Mô tả</label>
+				<input type="text" id="editCategoryDescription" required>
 				<button type="submit" class="save-btn">Lưu</button>
 				<button type="button" class="cancel-btn" id="cancelEditCategory">Hủy</button>
 			</form>
@@ -118,25 +113,6 @@
 			</form>
 		</div>
 	</div>
-	
-	<!-- Popup thêm sản phẩm vào danh mục -->
-	<div id="overlay-add-product" class="overlay"></div>
-	<div id="popup-add-product-category" class="popup">
-		<div class="popup-content">
-			<h3>Thêm sản phẩm vào danh mục</h3>
-			<form id="addProductToCategoryForm">
-				<label>Chọn sản phẩm</label>
-				<select id="productSelect">
-					<option value="">-- Chọn sản phẩm --</option>
-				</select>
-				<button type="button" id="addProductBtn">Thêm</button>
-				<!-- Danh sách sản phẩm đã chọn -->
-				<ul id="selectedProducts"></ul>
-				<button type="submit" class="save-btn">Lưu</button>
-				<button type="button" class="cancel-btn" id="cancelAddProduct">Hủy</button>
-			</form>
-		</div>
-	</div>
 
 	<!-- Popup xem sản phẩm trong danh mục -->
 	<div id="overlay-view-product" class="overlay"></div>
@@ -149,9 +125,8 @@
 			<button type="button" id="clearSelectionBtn">Xóa tất cả</button>
 		</div>
 	</div>
-	
-	<script src="./assets/js/cate.js"></script>
-	<script src="./assets/js/cate2.js"></script>
-	
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/admin-category.js"></script>
 </body>
 </html>

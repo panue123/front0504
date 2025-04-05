@@ -76,19 +76,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const price = product.price ? Number(product.price) : 0;
         const priceDiscount = product.pricediscount ? Number(product.pricediscount) : 0;
         
-        console.log("Giá gốc:", price);
-        console.log("Giá giảm:", priceDiscount);
-        
         // Hiển thị giá gốc và giá giảm khi có giá giảm
         const priceDisplay = priceDiscount > 0 && priceDiscount < price
             ? `<span style="text-decoration: line-through; color: #999; margin-right: 10px;">${price.toLocaleString('vi-VN')}đ</span>
                <span style="color: #f44336; font-weight: bold;">${priceDiscount.toLocaleString('vi-VN')}đ</span>`
             : `<span style="color: #f44336; font-weight: bold;">${price.toLocaleString('vi-VN')}đ</span>`;
         
+        // Log dữ liệu danh mục để kiểm tra
+        console.log("Danh mục sản phẩm:", product.category);
+
+        // Hiển thị tên danh mục hoặc để trống nếu không có danh mục
+        const categoryName = product.category && product.category.name
+            ? product.category.name
+            : (product.category || 'Chưa có danh mục');
+
         row.innerHTML = `
             <td>${index + 1}</td>
             <td><img src="${product.image_url || product.image || ''}" width="50" height="50" alt="Hình ảnh sản phẩm"></td>
             <td>${product.name || ''}</td>
+            <td>${categoryName}</td>
             <td>${priceDisplay}</td>
             <td>${product.stock || 0}</td>
             <td>
@@ -531,4 +537,260 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load sản phẩm khi trang được tải
     loadProducts();
+
+    // Hiển thị đánh giá sản phẩm
+    function displayProductReviews(reviews) {
+        const reviewsContainer = document.getElementById('productReviews');
+        if (reviewsContainer) {
+            reviewsContainer.innerHTML = reviews.map(review => `
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="review-user">
+                            <img src="${review.user.avatar || 'assets/img/default-avatar.png'}" alt="${review.user.fullName}" class="review-avatar">
+                            <span class="review-name">${review.user.fullName}</span>
+                        </div>
+                        <div class="review-rating">
+                            ${generateStarRating(review.rating)}
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>${review.content}</p>
+                        <span class="review-date">${formatDate(review.createdAt)}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    // Tạo HTML cho đánh giá sao
+    function generateStarRating(rating) {
+        return Array(5).fill().map((_, index) => `
+            <i class="fas fa-star ${index < rating ? 'text-warning' : 'text-muted'}"></i>
+        `).join('');
+    }
+
+    // Xử lý đánh giá sản phẩm
+    async function handleProductReview(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const formData = new FormData(form);
+        const rating = parseInt(formData.get('rating'));
+        const content = formData.get('content');
+        const productId = formData.get('productId');
+        
+        try {
+            const response = await fetch(`${API_URL}/products/${productId}/reviews`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ rating, content })
+            });
+            
+            if (!response.ok) {
+                throw new Error('Không thể gửi đánh giá');
+            }
+            
+            showMessage('Cảm ơn bạn đã đánh giá sản phẩm', 'success');
+            form.reset();
+            loadProductDetail(productId); // Tải lại trang để hiển thị đánh giá mới
+        } catch (error) {
+            showMessage(error.message, 'error');
+        }
+    }
+
+    // Tải sản phẩm liên quan
+    async function loadRelatedProducts(category) {
+        try {
+            const response = await fetch(`${API_URL}/products?category=${category}&limit=4`);
+            if (!response.ok) {
+                throw new Error('Không thể tải sản phẩm liên quan');
+            }
+
+            const products = await response.json();
+            
+            const relatedContainer = document.getElementById('relatedProducts');
+            if (relatedContainer) {
+                relatedContainer.innerHTML = products.map(product => `
+                    <div class="col-3">
+                        <div class="product-item">
+                            <div class="product-img">
+                                <img src="${product.image}" alt="${product.name}">
+                            </div>
+                            <div class="product-info">
+                                <h5>${product.name}</h5>
+                                <p class="price">${formatCurrency(product.price)}</p>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        } catch (error) {
+            showMessage(error.message, 'error');
+        }
+    }
+
+    // Khởi tạo các event listener
+    document.addEventListener('DOMContentLoaded', () => {
+        // ... existing code ...
+        
+        // Form đánh giá sản phẩm
+        const reviewForm = document.getElementById('reviewForm');
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', handleProductReview);
+        }
+    });
 });
+// Tải danh sách sản phẩm
+async function loadProducts(category = null, sort = null, search = null) {
+    try {
+        let url = `${API_URL}/products`;
+        const params = new URLSearchParams();
+        
+        if (category) params.append('category', category);
+        if (sort) params.append('sort', sort);
+        if (search) params.append('search', search);
+        
+        if (params.toString()) {
+            url += `?${params.toString()}`;
+        }
+        
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Không thể tải danh sách sản phẩm');
+        }
+
+        const products = await response.json();
+        
+        // Hiển thị sản phẩm
+        const productsContainer = document.getElementById('productsContainer');
+        if (productsContainer) {
+            productsContainer.innerHTML = products.map(product => `
+                <div class="col-3 product-item">
+                    <div class="row product-sale">
+                        ${product.discount ? `<span>${product.discount}%</span>` : ''}
+                    </div>
+                    <div class="row mb-1">
+                        <div class="product_img">
+                            <img src="${product.image}" alt="${product.name}" class="product-image">
+                        </div>
+                    </div>
+                    <div class="row product-info mb-1">
+                        <p onclick="goToProductDetail(${product.id})">
+                            ${product.name}
+                        </p>
+                    </div>
+                    <div class="row product-price">
+                        ${product.discount ? 
+                            `<span>${formatCurrency(product.price)} chỉ còn ${formatCurrency(product.price * (1 - product.discount/100))}</span>` :
+                            `<span>${formatCurrency(product.price)}</span>`
+                        }
+                    </div>
+                    <div class="row product-actions mt-2">
+                        <button class="btn btn-primary btn-sm" onclick="addToCart(${product.id})">
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Cập nhật phân trang
+        updatePagination(products.length);
+    } catch (error) {
+        showMessage(error.message, 'error');
+    }
+}
+
+// Cập nhật phân trang
+function updatePagination(totalProducts) {
+    const itemsPerPage = 12;
+    const totalPages = Math.ceil(totalProducts / itemsPerPage);
+    
+    const paginationContainer = document.getElementById('pagination');
+    if (paginationContainer) {
+        let paginationHTML = '';
+        
+        // Nút Previous
+        paginationHTML += `
+            <button class="btn btn-outline-primary me-2" onclick="changePage(currentPage - 1)" ${currentPage === 1 ? 'disabled' : ''}>
+                Trước
+            </button>
+        `;
+        
+        // Các nút số trang
+        for (let i = 1; i <= totalPages; i++) {
+            paginationHTML += `
+                <button class="btn ${currentPage === i ? 'btn-primary' : 'btn-outline-primary'} me-2" onclick="changePage(${i})">
+                    ${i}
+                </button>
+            `;
+        }
+        
+        // Nút Next
+        paginationHTML += `
+            <button class="btn btn-outline-primary" onclick="changePage(currentPage + 1)" ${currentPage === totalPages ? 'disabled' : ''}>
+                Sau
+            </button>
+        `;
+        
+        paginationContainer.innerHTML = paginationHTML;
+    }
+}
+
+// Xử lý tìm kiếm sản phẩm
+function handleSearch(event) {
+    event.preventDefault();
+    const searchInput = document.getElementById('searchInput');
+    const searchQuery = searchInput.value.trim();
+    
+    if (searchQuery) {
+        loadProducts(null, null, searchQuery);
+    }
+}
+
+// Xử lý sắp xếp sản phẩm
+function handleSort(event) {
+    const sortValue = event.target.value;
+    loadProducts(currentCategory, sortValue);
+}
+
+// Xử lý lọc theo danh mục
+function handleCategoryFilter(category) {
+    currentCategory = category;
+    loadProducts(category, currentSort);
+}
+
+// Khởi tạo các event listener
+document.addEventListener('DOMContentLoaded', () => {
+    // Lấy tham số từ URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category');
+    const sort = urlParams.get('sort');
+    const search = urlParams.get('search');
+    
+    // Tải danh sách sản phẩm
+    loadProducts(category, sort, search);
+    
+    // Form tìm kiếm
+    const searchForm = document.getElementById('searchForm');
+    if (searchForm) {
+        searchForm.addEventListener('submit', handleSearch);
+    }
+    
+    // Select sắp xếp
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', handleSort);
+    }
+    
+    // Các nút danh mục
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            handleCategoryFilter(button.dataset.category);
+        });
+    });
+}); 

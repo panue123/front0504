@@ -1,0 +1,99 @@
+body {
+    font-family: 'Archivo', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo img {
+    max-width: 150px;
+}
+
+.login-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-text {
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-input {
+    margin-bottom: 15px;
+}
+
+.login-input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-btn button {
+    padding: 10px 30px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.login-btn button:hover {
+    background-color: #45a049;
+}
+
+.underline {
+    text-decoration: underline;
+    color: #4CAF50;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    display: none;
+    text-align: center;
+}
+
+.form-switch {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-switch a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.form-switch a:hover {
+    text-decoration: underline;
+}
+
+.form-container {
+    display: none;
+}
+
+.form-container.active {
+    display: block;
+} 

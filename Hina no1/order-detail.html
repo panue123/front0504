@@ -58,7 +58,7 @@
                 <div class="col second-nav-text">
                     <div class="row">
                         <div class="col">
-                            <a href="giohang.html" class="second-nav-icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                            <a href="cart.html" class="second-nav-icon"><i class="fa-solid fa-cart-shopping"></i></a>
                         </div>
                         <div class="col"><a href="" class="second-nav-icon"><i class="fa-regular fa-user"></i></a>
                         </div>
@@ -145,3 +145,112 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết đơn hàng - Hina Cosmetics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white py-3">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h4 mb-0">Chi tiết đơn hàng</h1>
+                <a href="lichsumuahang.html" class="btn btn-outline-light">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="container my-4">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Order details -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Thông tin đơn hàng</h5>
+                    </div>
+                    <div class="card-body" id="orderDetail">
+                        <!-- Order details will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Order items -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Sản phẩm</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderItems">
+                                    <!-- Order items will be loaded here -->
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end"><strong>Tổng cộng:</strong></td>
+                                        <td id="orderTotal"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <!-- Order status -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Trạng thái đơn hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="orderStatus">
+                            <!-- Order status will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping information -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Thông tin giao hàng</h5>
+                    </div>
+                    <div class="card-body" id="shippingInfo">
+                        <!-- Shipping information will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Payment information -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Thông tin thanh toán</h5>
+                    </div>
+                    <div class="card-body" id="paymentInfo">
+                        <!-- Payment information will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/order.js"></script>
+</body>
+</html> 

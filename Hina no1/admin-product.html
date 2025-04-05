@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-    <title>Sản phẩm</title>
+    <title>Quản lý Sản phẩm</title>
 </head>
 
 <body>
@@ -33,37 +33,29 @@
                     </div>
                 </div>
                 <div class="row second-nav-row w-100">
-                    <div class="col second-nav-text"><a href="category.html">QUẢN LÝ DANH MỤC 📂</a></div>
-                    <div class="col second-nav-text active"><a href="product.html">QUẢN LÝ SẢN PHẨM 🛍</a></div>
-                    <div class="col second-nav-text"><a href="order.html">QUẢN LÝ ĐƠN HÀNG 🛒</a></div>
-                    <div class="col second-nav-text dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            THỐNG KÊ & BÁO CÁO 
-						</a>
-						<div class="dropdown-menu">
-							<a href="statistic.html">Theo doanh thu ngày</a>
-							<a href="statistic.html">Theo doanh thu tháng</a>
-							<a href="statistic.html">Theo số lượng bán ra</a>
-						</div>
-                    </div>
-                    <div class="col second-nav-text"><a href="user.html">QUẢN LÝ NGƯỜI DÙNG 🛡️</a></div>
+                    <div class="col second-nav-text"><a href="admin-statistic.html"><i class="fas fa-chart-line"></i> THỐNG KÊ & BÁO CÁO</a></div>
+                    <div class="col second-nav-text"><a href="admin-category.html"><i class="fas fa-tags"></i> QUẢN LÝ DANH MỤC</a></div>
+                    <div class="col second-nav-text active"><a href="admin-product.html"><i class="fas fa-box"></i> QUẢN LÝ SẢN PHẨM</a></div>
+                    <div class="col second-nav-text"><a href="admin-order.html"><i class="fas fa-shopping-cart"></i> QUẢN LÝ ĐƠN HÀNG</a></div>
+                    <div class="col second-nav-text"><a href="admin-user.html"><i class="fas fa-users"></i> QUẢN LÝ NGƯỜI DÙNG</a></div>       
                     <div class="col second-nav-text dropdown">
                         <a href="#" class="dropdown-toggle second-nav-icon">
                             <i class="fa-regular fa-user"></i> Admin
                         </a>
                         <div class="dropdown-menu">
-							<a href="profile.html">Thông tin cá nhân</a>
-							<a href="index.html">Đăng xuất</a>
-						</div>
+                            <a href="profile.html">Thông tin cá nhân</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
         
         <div class="container">
-            <h1>Quản lý Sản phẩm</h1>
+            <h1>Quản lý sản phẩm</h1>
             <div class="actions">
-                <button id="openAddProduct">➕ Thêm sản phẩm</button>
+                <button id="openAddProduct"><i class="fas fa-plus"></i> Thêm sản phẩm</button>
             </div>
             <table>
                 <thead>
@@ -71,6 +63,7 @@
                         <th>STT</th>
                         <th>Hình ảnh</th>
                         <th>Tên sản phẩm</th>
+                        <th>Danh mục</th>
                         <th>Giá</th>
                         <th>Số lượng</th>
                         <th>Thao tác</th>
