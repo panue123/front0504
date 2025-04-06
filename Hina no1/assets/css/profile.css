@@ -1,0 +1,123 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #fff1f8;
+    color: #333;
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.profile-container {
+    background: white;
+    padding: 25px;
+    width: 90%;
+    max-width: 420px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin:auto;
+}
+
+h2 {
+    color: #E67E7E;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+label {
+    font-weight: 600;
+    color: #E67E7E;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #f8c8dc;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #fff5fa;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #E67E7E;
+    background: #ffe6ee;
+}
+
+textarea {
+    resize: none;
+    height: 60px;
+}
+
+.btn-save {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #E67E7E;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-save:hover {
+    background: #f56c6c;
+}
+
+.avatar-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.avatar-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f8c8dc;
+}
+
+.avatar-edit {
+    position: absolute;
+    bottom: 0.5px;
+    right: 130px;
+    background: #E67E7E;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 12px;
+    border: 2px solid white;
+}
+
+#image-upload {
+    display: none;
+}
+
+.error-text {
+    color: red;
+    font-size: 14px;
+}

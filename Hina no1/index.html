@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hina - Mỹ phẩm chính hãng</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/navbar.css">
+	<link rel="stylesheet" href="assets/css/footer.css">
+	<link rel="stylesheet" href="assets/css/animations.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container-fluid px-0">
+		<!-- Header -->
+		<div class="header w-100">
+			<div class="navbar">
+				<div class="nav-row">
+					<div class="nav-logo">
+						<span>hina</span>
+					</div>
+					<div class="nav-menu">
+						<div class="nav-link active">
+							<a href="#" onclick="scrollToTop(); return false;">TRANG CHỦ</a>
+						</div>
+						<div class="nav-link dropdown">
+							<a href="#products" onclick="scrollToSection('products'); return false;">
+								NHÓM SẢN PHẨM <i class="fas fa-chevron-down"></i>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="productDropdown">
+								<!-- Loaded dynamically -->
+							</ul>
+						</div>
+						<div class="nav-link">
+							<a href="#products-highlight" onclick="scrollToSection('products-highlight'); return false;">SẢN PHẨM HOT</a>
+						</div>
+						<div class="nav-link">
+							<a href="#about" onclick="scrollToSection('about'); return false;">GIỚI THIỆU</a>
+						</div>
+					</div>
+					<div class="search-box">
+						<input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+						<div class="nav-search-icon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</div>
+					</div>
+					<div class="nav-icons">
+						<a href="#" class="second-nav-icon cart-icon" title="Giỏ hàng">
+							<i class="fa-solid fa-cart-shopping"></i>
+							<span class="badge" id="cartCount">0</span>
+						</a>
+						<div class="dropdown">
+							<a href="#" class="second-nav-icon user-icon" id="userDropdown" role="button" title="Tài khoản">
+								<i class="fa-regular fa-user"></i>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="userDropdown">
+								<li class="not-logged-in">
+									<a class="dropdown-item" href="login.html">Đăng nhập</a>
+								</li>
+								<li class="not-logged-in">
+									<a class="dropdown-item" href="login.html#register">Đăng ký</a>
+								</li>
+								<li class="logged-in" style="display: none;">
+									<a class="dropdown-item" href="profile.html">Chỉnh sửa thông tin</a>
+								</li>
+								<li class="logged-in" style="display: none;">
+									<a class="dropdown-item" href="#" id="logoutBtn">Đăng xuất</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Main Content -->
+		<div class="content">
+			<!-- Hero Slider -->
+			<div class="slider">
+				<div id="carouselExampleDark" class="carousel carousel-fade slide" data-bs-ride="carousel" data-bs-pause="false">
+					<div class="carousel-inner">
+						<div class="carousel-item active" data-bs-interval="4000">
+							<div class="overlay"></div>
+							<img src="assets/img/home_slider_item_image_desktop_2.webp" class="d-block w-100" alt="...">
+							<div class="carousel-caption">
+								<div class="slider-text">
+									<h1 class="fade-in-up">WHEN IN BEN TRE</h1>
+								</div>
+							</div>
+						</div>
+						<div class="carousel-item" data-bs-interval="4000">
+							<div class="overlay"></div>
+							<img src="assets/img/home_slider_item_image_desktop_1.webp" class="d-block w-100" alt="...">
+							<div class="carousel-caption">
+								<div class="slider-text">
+									<h1 class="fade-in-up">WHEN IN VUNG TAU</h1>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="carousel-control-prev slider-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" title="Trước">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next slider-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next" title="Sau">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Discover Section -->
+			<div class="discover container mt-3">
+				<!-- Category Images -->
+				<div class="row">
+					<div class="col-3 px-0">
+						<a href="products.html?category=skincare">
+							<img src="./assets/img/dis1.webp" class="discover-img" alt="Chăm sóc da">
+						</a>
+					</div>
+					<div class="col pe-0">
+						<div class="row">
+							<a href="products.html?category=makeup">
+								<img src="./assets/img/dis2.webp" class="discover-img" alt="Trang điểm">
+							</a>
+						</div>
+						<div class="row ms-1 gx-0 mt-3">
+							<div class="col-6">
+								<a href="products.html?category=perfume">
+									<img src="./assets/img/dis3.webp" class="discover-img pe-3" alt="Nước hoa">
+								</a>
+							</div>
+							<div class="col">
+								<a href="products.html?category=haircare">
+									<img src="./assets/img/dis4.webp" class="discover-img" alt="Chăm sóc tóc">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Flash Sale Banner -->
+				<div class="row mt-3">
+					<div class="col-12 px-0">
+						<a href="#">
+							<img src="./assets/img/home_fsalewebp.webp" alt="Flash Sale" class="discover-img w-100">
+						</a>
+					</div>
+				</div>
+
+				<!-- Products Section -->
+				<div id="products">
+					<div class="row product mt-3">
+						<span class="col px-0 product-title">SẢN PHẨM</span>
+					</div>
+					<div class="row my-3 gx-5 product-container" id="productList">
+						<!-- Products loaded dynamically -->
+					</div>
+					<div class="row product-pagination mb-3">
+						<div class="dot active"></div>
+						<div class="dot"></div>
+						<div class="dot"></div>
+					</div>
+				</div>
+
+				<!-- Featured Products Section -->
+				<div id="products-highlight">
+					<div class="row product mt-3">
+						<span class="col px-0 product-title">SẢN PHẨM NỔI BẬT</span>
+					</div>
+					<div class="row mt-3 product-nav-container">
+						<div class="col-3 product-nav product-nav--active">SKINCARE</div>
+						<div class="col-3 product-nav">BỔ SUNG COLLAGEN</div>
+						<div class="col-3 product-nav">CHỐNG LÃO HÓA</div>
+					</div>
+					<div class="row my-3 gx-5 product-container" id="featuredProductList">
+						<!-- Featured products loaded dynamically -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- About Section -->
+		<div class="about-section py-5" id="about">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-6">
+						<img src="./assets/img/Skincare.webp" alt="Hina Website" class="img-fluid rounded">
+					</div>
+					<div class="col-md-6">
+						<h2 class="about-title">Hành trình của Hina</h2>
+						<p class="about-text">
+							Website Hina được ra mắt vào năm 2024, là nền tảng thương mại điện tử chính thức của thương hiệu mỹ phẩm Hina. Với thiết kế hiện đại và giao diện thân thiện, website mang đến trải nghiệm mua sắm trực tuyến tuyệt vời cho khách hàng.
+						</p>
+						<p class="about-text">
+							Chúng tôi tự hào là một trong những website mỹ phẩm đầu tiên tại Việt Nam áp dụng công nghệ mới nhất, giúp khách hàng dễ dàng tìm kiếm và mua sắm các sản phẩm chăm sóc da chất lượng cao.
+						</p>
+						<p class="about-text">
+							Website được phát triển với mục tiêu mang đến cho khách hàng:
+						</p>
+						<ul class="about-list">
+							<li>Trải nghiệm mua sắm trực tuyến mượt mà</li>
+							<li>Thông tin sản phẩm chi tiết và chính xác</li>
+							<li>Hệ thống thanh toán an toàn và tiện lợi</li>
+							<li>Dịch vụ chăm sóc khách hàng 24/7</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<!-- Logo and Social Media -->
+					<div class="col-md-3 footer-section">
+						<div class="footer-logo">
+							<span>hina</span>
+						</div>
+						<p class="footer-desc">
+							Hina - Thương hiệu mỹ phẩm chính hãng, cam kết mang đến sản phẩm chất lượng và dịch vụ tốt nhất cho khách hàng.
+						</p>
+						<div class="social-links">
+							<a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+							<a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+							<a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+							<a href="#" title="Youtube"><i class="fab fa-youtube"></i></a>
+						</div>
+					</div>
+
+					<!-- Contact Info -->
+					<div class="col-md-3 footer-section">
+						<h4>Liên hệ</h4>
+						<ul class="contact-info">
+							<li>
+								<i class="fas fa-map-marker-alt"></i>
+								<span>419 Đường Nguyễn Văn Linh, Quận Hải Châu, Đà Nẵng</span>
+							</li>
+							<li>
+								<i class="fas fa-phone"></i>
+								<span>+84 949 309 618</span>
+							</li>
+							<li>
+								<i class="fas fa-envelope"></i>
+								<span>hinaservice@gmail.com</span>
+							</li>
+							<li>
+								<i class="fas fa-clock"></i>
+								<span>8:00 - 20:00, Thứ 2 - Chủ nhật</span>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Quick Links -->
+					<div class="col-md-3 footer-section">
+						<h4>Liên kết nhanh</h4>
+						<ul class="quick-links">
+							<li><a href="#">Trang chủ</a></li>
+							<li><a href="#">Sản phẩm</a></li>
+							<li><a href="#">Giới thiệu</a></li>
+							<li><a href="#">Liên hệ</a></li>
+						</ul>
+					</div>
+
+					<!-- Product Categories -->
+					<div class="col-md-3 footer-section">
+						<h4>Danh mục sản phẩm</h4>
+						<ul class="quick-links">
+							<li><a href="products.html?category=skincare">Chăm sóc da</a></li>
+							<li><a href="products.html?category=makeup">Trang điểm</a></li>
+							<li><a href="products.html?category=perfume">Nước hoa</a></li>
+							<li><a href="products.html?category=haircare">Chăm sóc tóc</a></li>
+							<li><a href="products.html?category=bodycare">Chăm sóc cơ thể</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+				<div class="container">
+					<p>&copy; 2025 Hina Cosmetics. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Quick View Modal -->
+	<div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="quick-view-image">
+								<img id="quickViewImage" src="" alt="Product Image">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<h2 id="quickViewName" class="product-name"></h2>
+							<div class="product-price">
+								<span class="old-price"></span>
+								<span class="current-price"></span>
+							</div>
+							<div class="product-quantity">
+								<span class="quantity-label">Số lượng</span>
+								<div class="quantity-input">
+									<button class="quantity-btn minus">-</button>
+									<input type="number" id="quickViewQuantity" value="1" min="1">
+									<button class="quantity-btn plus">+</button>
+								</div>
+							</div>
+							<div class="product-actions">
+								<button class="btn-add-cart" onclick="addToCart()">
+									THÊM VÀO GIỎ
+								</button>
+								<button class="btn-view-detail" onclick="viewProductDetail()">
+									XEM CHI TIẾT
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/js/auth.js"></script>
+	<script src="assets/js/cart.js"></script>
+	<script src="assets/js/category.js"></script>
+	<script src="assets/js/index.js"></script>
+	<script src="assets/js/profile.js"></script>
+</body>
+</html>

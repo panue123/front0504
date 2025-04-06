@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/css/base.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/product-detail.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="container-fluid px-0">
+		<div class="header w-100">
+			<div class="navbar">
+				<div class="row first-nav-row mx-0 w-100">
+					<div class="col ">
+						<div class="row">
+							<div class="col-4 second-nav-text search-box px-3">
+								<input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+							</div>
+							<div class="col-6 nav-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+						</div>
+					</div>
+					<div class="col nav-logo">
+						<span>hina</span>
+					</div>
+				</div>
+				<div class="row second-nav-row w-100 mx-auto">
+					<div class="col second-nav-text active"><a href="">TRANG CHỦ</a></div>
+					<div class="col second-nav-text dropdown">
+						<a href="#" class="dropdown-toggle" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							NHÓM SẢN PHẨM
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="productDropdown">
+							<li><a class="dropdown-item" href="#">Chăm sóc da</a></li>
+							<li><a class="dropdown-item" href="#">Trang điểm</a></li>
+							<li><a class="dropdown-item" href="#">Nước hoa</a></li>
+						</ul>
+					</div>
+					<div class="col second-nav-text" id="products-hot"><a href="">SẢN PHẨM HOT</a></div>
+					<div class="col second-nav-text"><a href="">GIỚI THIỆU</a></div>
+					<div class="col second-nav-text">
+						<div class="row">
+							<div class="col">
+								<a href="cart.html" class="second-nav-icon"><i class="fa-solid fa-cart-shopping"></i></a>
+							</div>
+							<div class="col"><a href="" class="second-nav-icon"><i class="fa-regular fa-user"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+            <div class="row">
+                <div class="col" style="background-color: #F5F5F5;">
+                    <p class="text px-3">CHI TIẾT SẢN PHẨM</p>
+                </div>
+            </div>
+            <p></p>
+            <div class="ct">
+                <div class="row">
+                    <div class="col"><img class="img-fluid img-size" src="./assets/img/a3.jpg" alt="ảnh sản phẩm"></div>
+                    <div class="col ms-3">
+                        <div class="row">
+                            <div class="col text"><p class="mg-bt">Sữa chống nắng bảo vệ hoàn hảo Anessa Perfect UV Sunscreen Skincare Milk 60ml</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-2"><p class="underline px text mg-bt">4.9</p></div>
+                                    <div class="col">
+                                        <i class="fa-regular fa-star color-star"></i>
+                                        <i class="fa-regular fa-star color-star"></i>
+                                        <i class="fa-regular fa-star color-star"></i>
+                                        <i class="fa-regular fa-star color-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-7"><p class="underline px text mg-bt">13.6</p></div>
+                                    <div class="col text"><p class="mg-bt">Lượt mua</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col flash-sale text"><p class="mg-bt">Flash sale</p></div>
+                        </div>
+                        <div class="row pr">
+                            <div class="col-2 price text"><p class="mg-bt">đ586.000</p></div>
+                            <div class="col-2 price text"><p class="line-through mg-bt">đ715.000</p></div>
+                            <div class="col text"><p style="color: red;" class="mg-bt">-18%</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3"><p class="p-0 text mg-bt">Vận chuyển</p></div>
+                            <div class="col"><p class="p-0 text mg-bt">Sau 3-7 ngày sau khi đặt hàng</p></div>
+                        </div>
+                        <div class="row"><div class="col text2 mg-bt"><p>Tặng Voucher ₫15.000 nếu đơn giao sau thời gian trên.</p></div></div>
+                        <div class="row">
+                            <div class="col-3 text"><p class="mg-bt">Sản phẩm</p></div>
+                            <div class="col "><button class="btn-size text mg-bt">version cũ</button></div>
+                            <div class="col "><button class="btn-size text mg-bt">version new</button></div>
+                            <div class="col "><button class="btn-size text mg-bt">version 2022</button></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 text"><p class="mg-bt">Số lượng</p></div>
+                            <div class="col">
+                                <div class="row g-0">
+                                    <div class="col-5"><button class="border-none w-100">-</button></div>
+                                    <div class="col-2 text-center text">1</div>
+                                    <div class="col-5"><button class="border-none w-100">+</button></div>
+                                </div>
+                            </div>
+                            <div class="col text2"><p class="mg-bt">329 sản phẩm có sẵn</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><button class="btn-size2 text"><p class="mg-bt">Thêm vào giỏ hàng</p></button></div>
+                            <div class="col"><button class="btn-size2 text"><p class="mg-bt">Mua ngay</p></button></div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col" style="background-color: #F5F5F5;">
+                    <p class="text px-3">MÔ TẢ SẢN PHẨM</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text px-3 mg-bt">Sữa Chống Nắng Anessa – Bảo Vệ Da Hoàn Hảo, Ngăn Ngừa Tia UV</p>
+                    <p class="text px-3 mg-bt">🔥 Chỉ số chống nắng SPF[XX] PA[XX] – Giúp bảo vệ da tối ưu khỏi tác hại của tia UVA & UVB.</p>
+                    <p class="text px-3 mg-bt">💦 Kết cấu nhẹ, thấm nhanh – Không gây bết dính, không để lại vệt trắng.</p>
+                    <p class="text px-3 mg-bt">🌿 Thành phần dưỡng da – Chiết xuất từ [thành phần chính], giúp dưỡng ẩm, làm dịu da</p>
+                    <p class="text px-3 mg-bt">🌞 Kiềm dầu, không gây bít tắc lỗ chân lông – Phù hợp cho cả da dầu, da nhạy cảm.</p>
+                    <p class="text px-3 mg-bt">💖 Dùng được cho mọi loại da – An toàn, lành tính, không chứa cồn & paraben.</p>
+                    <p class="text px-3 mg-bt">👉 Công dụng chính:</p>
+                    <p class="text px-3 mg-bt">✅ Bảo vệ da khỏi ánh nắng mặt trời suốt nhiều giờ.</p>
+                    <p class="text px-3 mg-bt">✅ Hỗ trợ ngăn ngừa lão hóa da, giảm nguy cơ nám, tàn nhang.</p>
+                    <p class="text px-3 mg-bt">✅ Cung cấp độ ẩm giúp da mềm mịn, không bị khô căng.</p>
+                    <p class="text px-3 mg-bt">📌 Hướng dẫn sử dụng:</p>
+                    <p class="text px-3 mg-bt">1 Lấy một lượng vừa đủ thoa đều lên da 15-20 phút trước khi ra nắng.</p>
+                    <p class="text px-3 mg-bt">2️ Thoa lại sau mỗi 2-3 giờ để duy trì hiệu quả chống nắng.</p>
+                    <p class="text px-3 mg-bt">🛒 Đặt hàng ngay để bảo vệ làn da khỏe đẹp mỗi ngày! 💖</p>
+                    <p></p>
+                    <p></p>
+
+                </div>
+            </div>
+
+        </div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"></script>
+</body>
+
+</html>

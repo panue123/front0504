@@ -1,0 +1,207 @@
+.container {
+    max-width:fit-content;
+    margin: 20px auto;
+    background: #FFF5F5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #E67E7E;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #fff;
+    padding: 15px 50px;
+    border-bottom: 2px solid #f8cdd2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo span {
+    font-size: 30px;
+    color: #A99170;
+    font-family: 'Architects Daughter',serif;
+    display: inline-block;
+}
+.nav-logo {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.second-nav-row {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    gap: 30px;
+}
+
+.second-nav-text {
+    position: relative;
+}
+
+.second-nav-text a {
+    color: #525252;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px 5px;
+    display: inline-block;
+}
+
+.second-nav-text.active a {
+    color: #EFC5C9;
+}
+
+.second-nav-text a:hover {
+    color: #EFC5C9;
+}
+
+.second-nav-icon i {
+	font-size: 18px;
+    margin-right: 10px;
+    
+}
+
+/* Bảng quản lý sản phẩm */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 4px solid #d95c78;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+table img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover; 
+    border-radius: 8px; 
+}
+
+thead {
+    background-color: #f8cdd2;
+    color: #403f3f;
+}
+
+thead th {
+    padding: 15px;
+    text-align: center;
+}
+
+tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tbody td {
+    padding: 12px;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fff0f0;
+}
+
+
+/* Các nút */
+.btn {
+    background-color: #f8cdd2;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #f8cdd2;
+}
+
+.actions button {
+    background-color: #f8cdd2;
+    color: rgb(39, 38, 38);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.actions button:hover {
+    background-color: #E67E7E;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f8cdd2;
+    color: #fff;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.crop-btn {
+    background-color: #f8cdd2;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+}
+
+.crop-btn:hover {
+    background-color: #f8cdd2;
+}
+
+.crop-btn:first-child {
+    background-color: #f8cdd2;
+    color: #fff;
+}
+
+.crop-btn:last-child {
+    background-color: #f8cdd2;
+    color: #fff;
+}
