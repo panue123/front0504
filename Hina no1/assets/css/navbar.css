@@ -1,4 +1,10 @@
 /* Navbar Container */
+.header {
+	position: fixed;
+	z-index: 1000;
+	background-color: #fff;
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -27,6 +33,14 @@
     text-transform: lowercase;
     margin-right: 100px;
     margin-bottom: 35px;
+    padding-left: 0px !important;
+	position: relative;
+}
+
+.nav-logo span {
+	position: absolute;
+	top: -10px;
+	left: -26px;
 }
 
 /* Navigation Menu */
@@ -43,6 +57,10 @@
     font-weight: 500;
     transition: color 0.3s;
     font-size: 15px;
+}
+
+.nav-link.active a {
+    color: #EFC5C9;
 }
 
 .nav-link a:hover {

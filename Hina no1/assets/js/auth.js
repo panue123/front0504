@@ -65,6 +65,8 @@ async function login(email, password) {
                 window.location.href = '/index.html';
             }
         }
+
+        updateUserInterface();
     } catch (error) {
         showMessage(error.message, 'error');
         throw error;
@@ -99,6 +101,8 @@ function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.location.href = 'login.html';
+
+    updateUserInterface();
 }
 
 // Lấy token
@@ -385,4 +389,73 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-}); 
+});
+
+function updateUserInterface() {
+    const userDropdown = document.getElementById('userDropdown');
+    const loggedInItems = document.querySelectorAll('.logged-in');
+    const notLoggedInItems = document.querySelectorAll('.not-logged-in');
+    const cartBadge = document.getElementById('cartCount');
+    
+    if (isLoggedIn()) {
+        // Add dropdown toggle for logged in users
+        userDropdown.classList.add('dropdown-toggle');
+        userDropdown.setAttribute('data-bs-toggle', 'dropdown');
+        userDropdown.setAttribute('aria-expanded', 'false');
+        
+        // Show arrow for logged in users
+        if (!document.querySelector('.dropdown-arrow')) {
+            const arrow = document.createElement('i');
+            arrow.className = 'fas fa-chevron-down dropdown-arrow';
+            userDropdown.appendChild(arrow);
+        }
+        
+        // Show logged in menu items, hide not logged in items
+        loggedInItems.forEach(item => item.style.display = 'block');
+        notLoggedInItems.forEach(item => item.style.display = 'none');
+
+        // Show cart badge if logged in
+        if (cartBadge) {
+            cartBadge.style.display = 'flex';
+        }
+    } else {
+        // Remove dropdown toggle for not logged in users
+        userDropdown.classList.remove('dropdown-toggle');
+        userDropdown.removeAttribute('data-bs-toggle');
+        userDropdown.removeAttribute('aria-expanded');
+        
+        // Remove arrow for not logged in users
+        const arrow = document.querySelector('.dropdown-arrow');
+        if (arrow) {
+            arrow.remove();
+        }
+        
+        // Show not logged in menu items, hide logged in items
+        loggedInItems.forEach(item => item.style.display = 'none');
+        notLoggedInItems.forEach(item => item.style.display = 'block');
+
+        // Hide cart badge if not logged in
+        if (cartBadge) {
+            cartBadge.style.display = 'none';
+        }
+    }
+}
+
+// Thêm hàm kiểm tra đăng nhập
+function isLoggedIn() {
+    return localStorage.getItem('token') !== null;
+}
+
+// Call updateUserInterface when page loads
+document.addEventListener('DOMContentLoaded', updateUserInterface);
+
+// Call updateUserInterface after login/logout
+function login(username, password) {
+    // ... existing login code ...
+    updateUserInterface();
+}
+
+function logout() {
+    // ... existing logout code ...
+    updateUserInterface();
+} 

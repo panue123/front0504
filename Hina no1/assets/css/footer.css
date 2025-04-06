@@ -1,8 +1,8 @@
 /* Footer container */
 .footer {
-    background-color: #f8f8f8;
+    background-color: #F5F5F5;
     padding: 60px 0 0;
-    margin-top: 50px;
+    margin-top: 0;
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -38,7 +38,7 @@
 .footer-logo span {
     font-family: 'Architects Daughter', cursive;
     font-size: 2.5rem;
-    color: #EFC5C9;
+    color: #A99170;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -62,7 +62,7 @@
     height: 40px;
     border-radius: 50%;
     background-color: #fff;
-    color: #EFC5C9;
+    color: #A99170;
     font-size: 1.2rem;
     transition: all 0.3s;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -96,7 +96,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(239, 197, 201, 0.1);
-    color: #EFC5C9;
+    color: #A99170;
     border-radius: 50%;
     margin-right: 15px;
     font-size: 0.9rem;
@@ -140,54 +140,13 @@
     opacity: 1;
 }
 
-/* Newsletter */
-.newsletter-form {
-    position: relative;
-    margin-top: 20px;
-}
-
-.newsletter-form input {
-    width: 100%;
-    padding: 12px 20px;
-    border: 1px solid #ddd;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    transition: all 0.3s;
-    background-color: #fff;
-}
-
-.newsletter-form input:focus {
-    outline: none;
-    border-color: #EFC5C9;
-    box-shadow: 0 0 15px rgba(239, 197, 201, 0.1);
-}
-
-.newsletter-form button {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #EFC5C9;
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    padding: 8px 20px;
-    font-size: 0.9rem;
-    transition: all 0.3s;
-}
-
-.newsletter-form button:hover {
-    background-color: #d8a3a7;
-    transform: translateY(-50%) scale(1.05);
-}
-
 /* Copyright */
 .copyright {
-    background-color: #EFC5C9;
-    color: #fff;
+    background-color: #F5F5F5;
+    color: #A99170;
     padding: 20px 0;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 0;
 }
 
 .copyright p {

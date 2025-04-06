@@ -1,42 +1,5 @@
 const API_URL = 'http://localhost:5000/api';
 
-// Khởi tạo carousel
-function initCarousel() {
-    const carousel = document.querySelector('#carouselExampleDark');
-    if (carousel) {
-        // Khởi tạo carousel với các tùy chọn
-        const carouselInstance = new bootstrap.Carousel(carousel, {
-            interval: 3000,
-            wrap: true,
-            touch: true,
-            pause: false
-        });
-
-        // Tắt pause mặc định của Bootstrap
-        carousel.addEventListener('mouseover', (e) => {
-            e.stopPropagation();
-            carouselInstance.cycle();
-        });
-        carousel.addEventListener('mouseout', (e) => {
-            e.stopPropagation();
-            carouselInstance.cycle();
-        });
-
-        // Tắt pause trên tất cả các phần tử con
-        const carouselItems = carousel.querySelectorAll('.carousel-item');
-        carouselItems.forEach(item => {
-            item.addEventListener('mouseover', (e) => {
-                e.stopPropagation();
-                carouselInstance.cycle();
-            });
-            item.addEventListener('mouseout', (e) => {
-                e.stopPropagation();
-                carouselInstance.cycle();
-            });
-        });
-    }
-}
-
 // Tải danh mục sản phẩm nổi bật
 async function loadFeaturedCategories() {
     try {
@@ -121,6 +84,26 @@ function formatCurrency(amount) {
         style: 'currency',
         currency: 'VND'
     }).format(amount);
+}
+
+// Khởi tạo carousel
+function initCarousel() {
+    const carousel = document.getElementById('carouselExampleDark');
+    if (carousel) {
+        const carouselInstance = new bootstrap.Carousel(carousel, {
+            interval: 4000,
+            wrap: true,
+            touch: true,
+            pause: false
+        });
+
+        // Disable pause on hover
+        carousel.setAttribute('data-bs-pause', 'false');
+        const items = carousel.querySelectorAll('.carousel-item');
+        items.forEach(item => {
+            item.setAttribute('data-bs-pause', 'false');
+        });
+    }
 }
 
 // Khởi tạo các event listener khi DOM đã load
