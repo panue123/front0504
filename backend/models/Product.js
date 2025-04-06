@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
-const Category = require("./Category");  // 🔥 Đảm bảo import đúng
+const { sequelize } = require("../config/db");
+const Category = require("./Category"); 
 
 const Product = sequelize.define(
     "Product",
@@ -26,5 +26,8 @@ if (Category) {
 } else {
     console.error("🚨 LỖI: Model Category chưa được khởi tạo đúng!");
 }
+
+Product.belongsTo(Category, { foreignKey: 'category_id', onDelete: 'SET NULL', onUpdate: 'CASCADE' });
+Category.hasMany(Product, { foreignKey: 'category_id' });
 
 module.exports = Product;

@@ -3,11 +3,12 @@ const router = express.Router();
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
+require('dotenv').config();
 
 cloudinary.config({
-    cloud_name: "de6bmgltb",
-    api_key: "754479267675762",
-    api_secret: "41I6Y_khYMFUdU0KVPkU1FsAUoE",
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
 });
 
 const storage = new CloudinaryStorage({

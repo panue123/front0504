@@ -69,7 +69,7 @@ exports.createProduct = async (req, res) => {
         // Chuyển đổi kiểu dữ liệu
         const priceValue = parseFloat(price);
         const productData = {
-            name,            
+            name,
             description,
             category_id: parseInt(category_id),
             stock: parseInt(stock),
@@ -161,19 +161,5 @@ exports.deleteProduct = async (req, res) => {
         res.json({ message: 'Sản phẩm đã được ẩn (is_deleted = true)' });
     } catch (error) {
         res.status(500).json({ message: 'Lỗi khi ẩn sản phẩm', error: error.message });
-    }
-};
-
-// Khôi phục sản phẩm
-exports.restoreProduct = async (req, res) => {
-    try {
-        const product = await Product.findByPk(req.params.id);
-        if (!product) return res.status(404).json({ message: 'Không tìm thấy sản phẩm' });
-
-        await product.update({ is_deleted: false });
-
-        res.json({ message: 'Sản phẩm đã được khôi phục!' });
-    } catch (error) {
-        res.status(500).json({ message: 'Lỗi khi khôi phục sản phẩm', error: error.message });
     }
 };
