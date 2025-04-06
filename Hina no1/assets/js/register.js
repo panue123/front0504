@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('username').value;
         const fullname = document.getElementById('fullname').value;
         const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
+        const phoneInput = document.getElementById('phone').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+        const phonenumber = phoneInput.value.trim();
 
         // Kiểm tra các trường bắt buộc
-        if (!username || !fullname || !email || !phone || !password || !confirmPassword) {
+        if (!username || !fullname || !email || !phonenumber || !password || !confirmPassword) {
             showNotification('Vui lòng điền đầy đủ thông tin!', 'error');
             return;
         }
@@ -42,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     fullname,
                     email,
                     phone,
-                    password
+                    password,
+                    password1: confirmPassword
                 })
             });
 

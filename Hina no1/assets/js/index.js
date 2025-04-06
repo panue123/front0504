@@ -106,6 +106,58 @@ function initCarousel() {
     }
 }
 
+// Scroll to top function
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Scroll to section function
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        const sectionTop = section.offsetTop - headerHeight;
+        window.scrollTo({
+            top: sectionTop,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Update active nav link based on scroll position
+function updateActiveNavLink() {
+    const sections = ['products', 'products-highlight', 'about'];
+    const navLinks = document.querySelectorAll('.nav-link');
+    const headerHeight = document.querySelector('.header').offsetHeight;
+    const scrollPosition = window.scrollY + headerHeight + 50; // Add some offset
+
+    // If at top of page, set home as active
+    if (scrollPosition < 100) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        navLinks[0].classList.add('active');
+        return;
+    }
+
+    sections.forEach((sectionId, index) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                navLinks[index + 1].classList.add('active');
+            }
+        }
+    });
+}
+
+// Add scroll event listener
+document.addEventListener('scroll', updateActiveNavLink);
+
 // Khởi tạo các event listener khi DOM đã load
 document.addEventListener('DOMContentLoaded', () => {
     // Khởi tạo carousel
@@ -257,6 +309,17 @@ document.addEventListener('DOMContentLoaded', () => {
             dot.style.display = "none";
         }
     });
+
+    // Update active nav link on page load
+    updateActiveNavLink();
+    
+    // Handle hash links on page load
+    if (window.location.hash) {
+        const sectionId = window.location.hash.substring(1);
+        setTimeout(() => {
+            scrollToSection(sectionId);
+        }, 100);
+    }
 });
 
 function goToProductDetail() {
@@ -286,4 +349,145 @@ function addToCart(event) {
         return;
     }
     // Thêm logic xử lý thêm vào giỏ hàng ở đây
+}
+
+// Sample product data
+const products = [
+    {
+        id: 1,
+        name: "Kem Dưỡng Body Trẻ Hóa Da Toàn Thân Image BODY SPA Rejuvenating Body Lotion",
+        image: "./assets/img/product.png",
+        oldPrice: 1400000,
+        currentPrice: 1190000,
+        discount: 15
+    },
+    {
+        id: 2,
+        name: "Kem Dưỡng Da Mặt Chống Lão Hóa Image AGELESS Total Repair Crème",
+        image: "./assets/img/product2.png",
+        oldPrice: 2500000,
+        currentPrice: 2160000,
+        discount: 14
+    },
+    {
+        id: 3,
+        name: "Kem Dưỡng Da Mặt Phục Hồi Da Image Irescue Post Treatment Recovery Balm",
+        image: "./assets/img/product3.png",
+        oldPrice: 2100000,
+        currentPrice: 1760000,
+        discount: 16
+    },
+    {
+        id: 4,
+        name: "Kem Dưỡng Da Mặt Phục Hồi và Chống Lão Hóa Image MD Restoring Youth Repair Creme",
+        image: "./assets/img/product4.png",
+        oldPrice: 3400000,
+        currentPrice: 2930000,
+        discount: 14
+    }
+];
+
+// Format price to VND
+function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', { 
+        style: 'currency', 
+        currency: 'VND',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(price);
+}
+
+// Create product HTML
+function createProductHTML(product) {
+    return `
+        <div class="col-3" id="product-${product.id}">
+            <div class="product-item">
+                <div class="product-sale">
+                    <span>${product.discount}%</span>
+                </div>
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                    <button class="btn-quick-view" onclick="openQuickView(${product.id})" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                        Xem nhanh <i class="fas fa-eye ms-1"></i>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">${product.name}</p>
+                    <div class="product-price">
+                        <span class="old-price">${formatPrice(product.oldPrice)}</span>
+                        <span class="current-price">${formatPrice(product.currentPrice)}</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart(${product.id})">
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Load products
+function loadProducts() {
+    const productList = document.getElementById('productList');
+    if (productList) {
+        productList.innerHTML = products.map(product => createProductHTML(product)).join('');
+    }
+
+    // Also load featured products
+    const featuredProductList = document.getElementById('featuredProductList');
+    if (featuredProductList) {
+        featuredProductList.innerHTML = products.map(product => createProductHTML(product)).join('');
+    }
+}
+
+// Quick view functionality
+function openQuickView(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    // Update modal content
+    document.getElementById('quickViewImage').src = product.image;
+    document.getElementById('quickViewName').textContent = product.name;
+    document.querySelector('#quickViewModal .old-price').textContent = formatPrice(product.oldPrice);
+    document.querySelector('#quickViewModal .current-price').textContent = formatPrice(product.currentPrice);
+    document.getElementById('quickViewQuantity').value = 1;
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    loadProducts();
+
+    // Quantity buttons
+    const quantityInput = document.getElementById('quickViewQuantity');
+    const minusBtn = document.querySelector('.quantity-btn.minus');
+    const plusBtn = document.querySelector('.quantity-btn.plus');
+
+    if (minusBtn && quantityInput) {
+        minusBtn.addEventListener('click', () => {
+            const currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+    }
+
+    if (plusBtn && quantityInput) {
+        plusBtn.addEventListener('click', () => {
+            const currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+        });
+    }
+});
+
+// Add to cart function
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+    
+    alert(`Đã thêm ${product.name} vào giỏ hàng`);
+}
+
+// View product detail function
+function viewProductDetail(productId) {
+    window.location.href = `product-detail.html?id=${productId}`;
 }
