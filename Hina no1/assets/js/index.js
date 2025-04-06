@@ -1,5 +1,42 @@
 const API_URL = 'http://localhost:5000/api';
 
+// Khởi tạo carousel
+function initCarousel() {
+    const carousel = document.querySelector('#carouselExampleDark');
+    if (carousel) {
+        // Khởi tạo carousel với các tùy chọn
+        const carouselInstance = new bootstrap.Carousel(carousel, {
+            interval: 3000,
+            wrap: true,
+            touch: true,
+            pause: false
+        });
+
+        // Tắt pause mặc định của Bootstrap
+        carousel.addEventListener('mouseover', (e) => {
+            e.stopPropagation();
+            carouselInstance.cycle();
+        });
+        carousel.addEventListener('mouseout', (e) => {
+            e.stopPropagation();
+            carouselInstance.cycle();
+        });
+
+        // Tắt pause trên tất cả các phần tử con
+        const carouselItems = carousel.querySelectorAll('.carousel-item');
+        carouselItems.forEach(item => {
+            item.addEventListener('mouseover', (e) => {
+                e.stopPropagation();
+                carouselInstance.cycle();
+            });
+            item.addEventListener('mouseout', (e) => {
+                e.stopPropagation();
+                carouselInstance.cycle();
+            });
+        });
+    }
+}
+
 // Tải danh mục sản phẩm nổi bật
 async function loadFeaturedCategories() {
     try {
@@ -7,17 +44,11 @@ async function loadFeaturedCategories() {
         if (!response.ok) {
             throw new Error('Không thể tải danh mục');
         }
-
         const categories = await response.json();
-        const categoriesContainer = document.querySelector('.discover .row:first-child');
-        
-        if (categoriesContainer) {
-            categoriesContainer.innerHTML = categories.map(category => `
-                <div class="col-3 px-0">
-                    <a href="products.html?category=${category.id}">
-                        <img src="${category.image}" class="discover-img" alt="${category.name}">
-                    </a>
-                </div>
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        if (dropdownMenu) {
+            dropdownMenu.innerHTML = categories.map(category => `
+                <li><a class="dropdown-item" href="products.html?category=${category.id}">${category.name}</a></li>
             `).join('');
         }
     } catch (error) {
@@ -32,10 +63,8 @@ async function loadFeaturedProducts() {
         if (!response.ok) {
             throw new Error('Không thể tải sản phẩm');
         }
-
         const products = await response.json();
         const productsContainer = document.querySelector('.product-container');
-        
         if (productsContainer) {
             productsContainer.innerHTML = products.map(product => `
                 <div class="col-3">
@@ -71,41 +100,13 @@ async function loadFeaturedProducts() {
     }
 }
 
-// Tải bài viết mới nhất
-async function loadLatestArticles() {
-    try {
-        const response = await fetch(`${API_URL}/articles/latest`);
-        if (!response.ok) {
-            throw new Error('Không thể tải bài viết');
-        }
-
-        const articles = await response.json();
-        const articlesContainer = document.querySelector('.blog-content-news');
-        
-        if (articlesContainer) {
-            articlesContainer.innerHTML = articles.map(article => `
-                <div class="col blog-content-news-item">
-                    <div class="row blog-content-news-item-img">
-                        <img src="${article.image}" alt="${article.title}" class="">
-                    </div>
-                    <div class="row blog-content-news-item-title mt-2">${article.title}</div>
-                    <div class="row blog-content-news-item-btn mt-3">
-                        <a href="article.html?id=${article.id}" class="col">Xem thêm</a>
-                    </div>
-                </div>
-            `).join('');
-        }
-    } catch (error) {
-        console.error('Lỗi tải bài viết:', error);
-    }
-}
-
-// Xử lý tìm kiếm sản phẩm
+// Xử lý tìm kiếm
 function handleSearch(event) {
     event.preventDefault();
     const searchInput = document.getElementById('searchInput');
-    if (searchInput && searchInput.value.trim()) {
-        window.location.href = `products.html?search=${encodeURIComponent(searchInput.value.trim())}`;
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm) {
+        window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
     }
 }
 
@@ -122,12 +123,10 @@ function formatCurrency(amount) {
     }).format(amount);
 }
 
-// Khởi tạo các event listener
+// Khởi tạo các event listener khi DOM đã load
 document.addEventListener('DOMContentLoaded', () => {
-    // Tải dữ liệu
-    loadFeaturedCategories();
-    loadFeaturedProducts();
-    loadLatestArticles();
+    // Khởi tạo carousel
+    initCarousel();
 
     // Xử lý tìm kiếm
     const searchForm = document.querySelector('.search-box form');
@@ -135,26 +134,24 @@ document.addEventListener('DOMContentLoaded', () => {
         searchForm.addEventListener('submit', handleSearch);
     }
 
+    // Tải dữ liệu
+    loadFeaturedCategories();
+    loadFeaturedProducts();
+
     // Xử lý chuyển tab sản phẩm nổi bật
     const productNavs = document.querySelectorAll('.product-nav');
     productNavs.forEach(nav => {
         nav.addEventListener('click', async () => {
-            // Xóa active class từ tất cả các nav
             productNavs.forEach(n => n.classList.remove('product-nav--active'));
-            // Thêm active class cho nav được click
             nav.classList.add('product-nav--active');
-
-            // Tải sản phẩm theo danh mục
             const category = nav.textContent.trim();
             try {
                 const response = await fetch(`${API_URL}/products?category=${encodeURIComponent(category)}`);
                 if (!response.ok) {
                     throw new Error('Không thể tải sản phẩm');
                 }
-
                 const products = await response.json();
                 const productsContainer = document.querySelector('.product-container');
-                
                 if (productsContainer) {
                     productsContainer.innerHTML = products.map(product => `
                         <div class="col-3">
@@ -190,78 +187,80 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+    // Add quick view buttons
+    const products = document.querySelectorAll('.product');
+    products.forEach(product => {
+        const productImg = product.querySelector('.product_img');
+        const quickViewBtn = document.createElement('button');
+        quickViewBtn.className = 'quick-view-btn';
+        quickViewBtn.innerHTML = '<i class="fas fa-eye"></i> Xem nhanh';
+        productImg.appendChild(quickViewBtn);
+
+        quickViewBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const productId = product.id;
+            goToProductDetail(productId);
+        });
+    });
+
+    // Add hover effects to discover images
+    const discoverImages = document.querySelectorAll('.discover-img');
+    discoverImages.forEach(img => {
+        img.style.transition = 'transform 0.5s ease';
+    });
+
+    // Navigation active state
     let navItems = document.querySelectorAll(".second-nav-text");
-
     navItems.forEach(item => {
         item.addEventListener("click", function () {
-            // Xóa class 'active' của tất cả các mục
             navItems.forEach(nav => nav.classList.remove("active"));
-
-            // Thêm class 'active' vào mục được chọn
             this.classList.add("active");
         });
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+    // Dropdown scroll
     document.querySelectorAll(".dropdown-item").forEach(item => {
         item.addEventListener("click", function (event) {
-            event.preventDefault(); // Ngăn chặn hành vi mặc định
-            let targetElement = document.getElementById('products'); // Phần cần cuộn tới
+            event.preventDefault();
+            let targetElement = document.getElementById('products');
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
             }
         });
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("products-hot").addEventListener("click", function (event) {
-        event.preventDefault(); // Ngăn chặn hành vi mặc định
-        
-        let targetElement = document.getElementById('products-highlight'); // ID của phần Sản phẩm nổi bật
-        
+    // Products hot scroll
+    document.getElementById("products-hot")?.addEventListener("click", function (event) {
+        event.preventDefault();
+        let targetElement = document.getElementById('products-highlight');
         if (targetElement) {
             targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("news").addEventListener("click", function (event) {
-        event.preventDefault(); // Ngăn chặn hành vi mặc định
-        
-        let targetElement = document.getElementById('article'); // ID của phần Sản phẩm nổi bật
-        
+    // News scroll
+    document.getElementById("news")?.addEventListener("click", function (event) {
+        event.preventDefault();
+        let targetElement = document.getElementById('article');
         if (targetElement) {
             targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+    // Product pagination
     let dots = document.querySelectorAll(".dot");
     let productsContainer = document.querySelector(".product-container");
     let totalProducts = document.querySelectorAll(".product-container > .col-3").length;
-    let productsPerPage = 4; // Số sản phẩm hiển thị mỗi lần
+    let productsPerPage = 4;
     let currentPage = 0;
 
     dots.forEach((dot, index) => {
         dot.addEventListener("click", function () {
-            // Xóa class 'active' của tất cả các dots
             dots.forEach(d => d.classList.remove("active"));
-
-            // Thêm class 'active' vào nút được bấm
             this.classList.add("active");
-
-            // Cập nhật vị trí sản phẩm
             currentPage = index;
             let scrollPosition = index * productsContainer.clientWidth;
-
-            // Cuộn danh sách sản phẩm theo trang
             productsContainer.scrollTo({
                 left: scrollPosition,
                 behavior: "smooth"
@@ -269,7 +268,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Tự động cập nhật số trang nếu có nhiều sản phẩm hơn
     let totalPages = Math.ceil(totalProducts / productsPerPage);
     dots.forEach((dot, index) => {
         if (index >= totalPages) {
@@ -283,4 +281,26 @@ function goToProductDetail() {
 }
 function goToHomePage() {
     window.location.href = "index.html"; // Thay bằng trang chủ của bạn
+}
+
+// Show notification
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+function addToCart(event) {
+    event.preventDefault();
+    if (!checkLogin()) {
+        window.location.href = 'login.html';
+        return;
+    }
+    // Thêm logic xử lý thêm vào giỏ hàng ở đây
 }

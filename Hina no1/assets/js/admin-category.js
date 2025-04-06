@@ -54,11 +54,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Lấy danh sách danh mục từ API 
     async function loadCategories() {
         try {
-            const response = await fetch("http://localhost:5000/api/categories");
-            if (!response.ok) throw new Error("⚠ Không thể tải danh mục!");
+            const response = await fetch("http://localhost:5000/api/categories", {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error("⚠ Không thể tải danh mục!");
+            }
 
             const categories = await response.json();
             categoryTable.innerHTML = "";
+            
             if (!Array.isArray(categories) || categories.length === 0) {
                 categoryTable.innerHTML = `<tr><td colspan="4">Không có danh mục nào.</td></tr>`;
                 return;
@@ -71,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    //  Thêm một hàng danh mục vào bảng 
+    // Thêm một hàng danh mục vào bảng 
     function addCategoryRow(category, index) {
         const row = document.createElement("tr");
         row.innerHTML = `
@@ -109,7 +117,10 @@ document.addEventListener("DOMContentLoaded", function () {
             try {
                 const response = await fetch("http://localhost:5000/api/categories", {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
                     body: JSON.stringify({ name, description })
                 });
 
@@ -160,7 +171,10 @@ document.addEventListener("DOMContentLoaded", function () {
             try {
                 const response = await fetch(`http://localhost:5000/api/categories/${currentCategoryId}`, {
                     method: "PUT",
-                    headers: { "Content-Type": "application/json" },
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
                     body: JSON.stringify({ name, description })
                 });
 
@@ -195,7 +209,10 @@ document.addEventListener("DOMContentLoaded", function () {
     confirmDeleteCategory.addEventListener("click", async function () {
         try {
             const response = await fetch(`http://localhost:5000/api/categories/${currentCategoryId}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    'Accept': 'application/json'
+                }
             });
 
             if (!response.ok) {

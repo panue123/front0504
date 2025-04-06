@@ -84,6 +84,80 @@ function getUrlParam(param) {
     return urlParams.get(param);
 }
 
+// Hiển thị danh mục trong footer
+function renderFooterCategories(categories) {
+    const footerCategories = document.getElementById('footer-categories');
+    if (!footerCategories) return;
+
+    // Xóa nội dung cũ
+    footerCategories.innerHTML = '';
+
+    // Thêm các danh mục mới
+    categories.forEach(category => {
+        const p = document.createElement('p');
+        const a = document.createElement('a');
+        a.href = `products.html?category=${category.id}`;
+        a.textContent = category.name;
+        p.appendChild(a);
+        footerCategories.appendChild(p);
+    });
+}
+
+// Tải danh mục sản phẩm từ backend
+async function loadCategories() {
+    try {
+        const response = await fetch('http://localhost:5000/api/categories', {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Không thể tải danh mục sản phẩm');
+        }
+
+        const categories = await response.json();
+        renderCategories(categories);
+        renderFooterCategories(categories);
+    } catch (error) {
+        console.error('Lỗi khi tải danh mục:', error);
+        showNotification('Không thể tải danh mục sản phẩm', 'error');
+    }
+}
+
+// Hiển thị danh mục sản phẩm
+function renderCategories(categories) {
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    if (!dropdownMenu) return;
+
+    // Xóa nội dung cũ
+    dropdownMenu.innerHTML = '';
+
+    // Thêm các danh mục mới
+    categories.forEach(category => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.className = 'dropdown-item';
+        a.href = `products.html?category=${category.id}`;
+        a.textContent = category.name;
+        li.appendChild(a);
+        dropdownMenu.appendChild(li);
+    });
+}
+
+// Hiển thị thông báo
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
 // Khởi tạo các event listener
 document.addEventListener('DOMContentLoaded', () => {
     // Tải danh mục cho trang chủ
@@ -95,4 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('categoryFilter')) {
         loadCategoriesForProducts();
     }
+
+    // Tải danh mục khi trang được tải
+    loadCategories();
 }); 

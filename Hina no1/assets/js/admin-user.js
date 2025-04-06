@@ -343,3 +343,85 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'index.html';
     });
 });
+
+// Lấy danh sách user chờ duyệt
+const getPendingUsers = async () => {
+    const token = localStorage.getItem('token');
+    const response = await fetch('/api/admin/users', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    const users = await response.json();
+    return users.filter(user => !user.is_active);
+};
+
+// Kích hoạt tài khoản
+const activateUser = async (userId) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`/api/admin/users/${userId}/toggle-active`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ is_active: true })
+    });
+    return response.json();
+};
+
+// Component hiển thị danh sách user chờ duyệt
+function PendingUsersList() {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        loadPendingUsers();
+    }, []);
+
+    const loadPendingUsers = async () => {
+        const pendingUsers = await getPendingUsers();
+        setUsers(pendingUsers);
+    };
+
+    const handleActivate = async (userId) => {
+        try {
+            await activateUser(userId);
+            alert('Kích hoạt tài khoản thành công!');
+            loadPendingUsers(); // Tải lại danh sách
+        } catch (error) {
+            alert('Lỗi kích hoạt tài khoản: ' + error.message);
+        }
+    };
+
+    return (
+        <div>
+            <h2>Danh sách tài khoản chờ duyệt</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Ngày đăng ký</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map(user => (
+                        <tr key={user.id}>
+                            <td>{user.username}</td>
+                            <td>{user.fullname}</td>
+                            <td>{user.email}</td>
+                            <td>{new Date(user.createdAt).toLocaleDateString()}</td>
+                            <td>
+                                <button onClick={() => handleActivate(user.id)}>
+                                    Kích hoạt
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}

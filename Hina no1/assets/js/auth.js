@@ -19,19 +19,16 @@ function requireAdmin() {
     return true;
 }
 
-// Yêu cầu đăng nhập
-function requireLogin() {
-    if (!isAuthenticated()) {
-        showMessage('Vui lòng đăng nhập để thực hiện thao tác này', 'warning');
-        window.location.href = '/login.html';
-        return false;
-    }
-    return true;
+// Kiểm tra trạng thái đăng nhập
+function checkLogin() {
+    const token = localStorage.getItem('token');
+    return !!token;
 }
 
-// Kiểm tra đăng nhập
-function isAuthenticated() {
-    return !!localStorage.getItem(TOKEN_KEY);
+// Lưu thông tin đăng nhập
+function saveLogin(token, user) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
 }
 
 // Đăng nhập
@@ -99,9 +96,9 @@ async function register(userData) {
 
 // Đăng xuất
 function logout() {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(USER_KEY);
-    window.location.href = '/index.html';
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = 'login.html';
 }
 
 // Lấy token
@@ -351,4 +348,41 @@ function saveCurrentUrl() {
 }
 
 // Kiểm tra đăng nhập khi trang được tải
-document.addEventListener('DOMContentLoaded', checkAuth); 
+document.addEventListener('DOMContentLoaded', checkAuth);
+
+// Xử lý sự kiện click vào icon người dùng
+document.addEventListener('DOMContentLoaded', function() {
+    const userIcon = document.querySelector('.user-icon');
+    if (userIcon) {
+        userIcon.addEventListener('click', function(e) {
+            if (!checkLogin()) {
+                e.preventDefault();
+                window.location.href = 'login.html';
+            }
+        });
+    }
+
+    // Xử lý sự kiện click vào icon giỏ hàng
+    const cartIcon = document.querySelector('.cart-icon');
+    if (cartIcon) {
+        cartIcon.addEventListener('click', function(e) {
+            if (!checkLogin()) {
+                e.preventDefault();
+                window.location.href = 'login.html';
+            }
+        });
+    }
+
+    // Xử lý sự kiện thêm sản phẩm vào giỏ hàng
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    if (addToCartButtons) {
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!checkLogin()) {
+                    e.preventDefault();
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+    }
+}); 

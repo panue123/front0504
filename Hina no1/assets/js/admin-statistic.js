@@ -4,6 +4,213 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentPage.includes("statistic.html")) {
         document.querySelector(".dropdown").classList.add("active");
     }
+
+    // Khai báo các phần tử DOM
+    const totalRevenueElement = document.getElementById("totalRevenue");
+    const totalOrdersElement = document.getElementById("totalOrders");
+    const totalProductsElement = document.getElementById("totalProducts");
+    const totalUsersElement = document.getElementById("totalUsers");
+    const revenueChart = document.getElementById("revenueChart");
+    const orderChart = document.getElementById("orderChart");
+    const productChart = document.getElementById("productChart");
+
+    // Khởi tạo biến
+    let revenueChartInstance = null;
+    let orderChartInstance = null;
+    let productChartInstance = null;
+
+    // Lấy thống kê tổng quan
+    async function loadOverviewStats() {
+        try {
+            const response = await fetch("http://localhost:5000/api/statistics/overview", {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error("⚠ Không thể tải thống kê!");
+            }
+
+            const stats = await response.json();
+            
+            totalRevenueElement.textContent = formatCurrency(stats.total_revenue);
+            totalOrdersElement.textContent = stats.total_orders;
+            totalProductsElement.textContent = stats.total_products;
+            totalUsersElement.textContent = stats.total_users;
+        } catch (error) {
+            console.error("❌ Lỗi khi tải thống kê:", error);
+            showNotification(error.message, 'error');
+        }
+    }
+
+    // Lấy thống kê doanh thu theo tháng
+    async function loadRevenueStats() {
+        try {
+            const response = await fetch("http://localhost:5000/api/statistics/revenue", {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error("⚠ Không thể tải thống kê doanh thu!");
+            }
+
+            const data = await response.json();
+            
+            if (revenueChartInstance) {
+                revenueChartInstance.destroy();
+            }
+
+            revenueChartInstance = new Chart(revenueChart, {
+                type: 'line',
+                data: {
+                    labels: data.map(item => item.month),
+                    datasets: [{
+                        label: 'Doanh thu',
+                        data: data.map(item => item.revenue),
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Doanh thu theo tháng'
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.error("❌ Lỗi khi tải thống kê doanh thu:", error);
+            showNotification(error.message, 'error');
+        }
+    }
+
+    // Lấy thống kê đơn hàng theo tháng
+    async function loadOrderStats() {
+        try {
+            const response = await fetch("http://localhost:5000/api/statistics/orders", {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error("⚠ Không thể tải thống kê đơn hàng!");
+            }
+
+            const data = await response.json();
+            
+            if (orderChartInstance) {
+                orderChartInstance.destroy();
+            }
+
+            orderChartInstance = new Chart(orderChart, {
+                type: 'bar',
+                data: {
+                    labels: data.map(item => item.month),
+                    datasets: [{
+                        label: 'Số đơn hàng',
+                        data: data.map(item => item.count),
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Số đơn hàng theo tháng'
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.error("❌ Lỗi khi tải thống kê đơn hàng:", error);
+            showNotification(error.message, 'error');
+        }
+    }
+
+    // Lấy thống kê sản phẩm bán chạy
+    async function loadProductStats() {
+        try {
+            const response = await fetch("http://localhost:5000/api/statistics/products", {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error("⚠ Không thể tải thống kê sản phẩm!");
+            }
+
+            const data = await response.json();
+            
+            if (productChartInstance) {
+                productChartInstance.destroy();
+            }
+
+            productChartInstance = new Chart(productChart, {
+                type: 'pie',
+                data: {
+                    labels: data.map(item => item.name),
+                    datasets: [{
+                        data: data.map(item => item.quantity),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Top sản phẩm bán chạy'
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.error("❌ Lỗi khi tải thống kê sản phẩm:", error);
+            showNotification(error.message, 'error');
+        }
+    }
+
+    // Hiển thị thông báo
+    function showNotification(message, type = 'success') {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
+    // Format tiền tệ
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(amount);
+    }
+
+    // Load dữ liệu khi trang được tải
+    loadOverviewStats();
+    loadRevenueStats();
+    loadOrderStats();
+    loadProductStats();
 });
 
 // Tải thống kê tổng quan
