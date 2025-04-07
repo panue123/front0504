@@ -19,22 +19,13 @@ const sequelize = new Sequelize(
     }
 );
 
-// Hàm kết nối với retry logic
-const connectWithRetry = async (retries = 5) => {
-    try {
-        await sequelize.authenticate();
+sequelize.authenticate()
+    .then(() => {
         console.log('✅ Kết nối MySQL thành công');
-        return true;
-    } catch (err) {
+    })
+    .catch(err => {
         console.error('❌ Lỗi kết nối:', err);
-        if (retries > 0) {
-            console.log(`Thử kết nối lại sau 5 giây... (${retries} lần còn lại)`);
-            await new Promise(resolve => setTimeout(resolve, 5000));
-            return connectWithRetry(retries - 1);
-        }
-        throw err;
-    }
-};
+    });
 
 // Xử lý đóng kết nối khi tắt server
 process.on('SIGINT', async () => {
@@ -48,4 +39,4 @@ process.on('SIGINT', async () => {
     }
 });
 
-module.exports = { sequelize, connectWithRetry };
+module.exports = sequelize ;

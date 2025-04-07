@@ -17,6 +17,5 @@ router.get('/', categoryController.getAllCategories); // Lấy danh sách danh m
 router.get('/:id/products', categoryController.getProductsInCategory); // Lấy sản phẩm trong danh mục
 router.put('/:id', categoryController.updateCategory); // Cập nhật danh mục
 router.delete('/:id', categoryController.deleteCategory); // Xóa danh mục
-router.get("/api/categories/:id/available-products", categoryController.getAvailableProductsForCategory); // Lấy sản phẩm chưa có trong danh mục
 
 module.exports = router;

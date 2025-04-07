@@ -40,7 +40,7 @@ exports.getProductsInCategory = async (req, res) => {
     }
 }   
 
-// Sửa tên danh mục
+// Sửa danh mục
 exports.updateCategory = async (req, res) => {
     try {
         const { id } = req.params;
