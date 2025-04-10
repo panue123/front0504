@@ -4,58 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký - Hina Cosmetics</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/css/product.css">
-    <link rel="stylesheet" href="assets/css/popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <div class="login-container">
-            <div class="col nav-logo">
+        <div class="forms-container">
+            <div class="nav-logo">
                 <span>hina</span>
             </div>
-            <h2 class="text-center mb-4">Đăng ký tài khoản</h2>
-            
-            <form id="registerForm">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" required>
-                </div>
-                <div class="mb-3">
-                    <label for="fullname" class="form-label">Họ và tên</label>
-                    <input type="text" class="form-control" id="fullname" required>    
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Số điện thoại</label>
-                    <input type="tel" class="form-control" id="phone" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Mật khẩu</label>
-                    <input type="password" class="form-control" id="password" required>
-                </div>
-                <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Xác nhận mật khẩu</label>
-                    <input type="password" class="form-control" id="confirmPassword" required>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-user-plus"></i> Đăng ký
+            <div class="forms-wrapper">
+                <!-- Form Đăng ký -->
+                <form id="registerForm" class="register-form active">
+                    <h2>Đăng ký tài khoản</h2>
+                
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="username" id="username" placeholder="Tên đăng nhập" maxlength="20" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-user-circle"></i>
+                        <input type="text" name="fullname" id="fullname" placeholder="Họ và tên" maxlength="50" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" name="email" id="email" placeholder="Email" maxlength="50" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" name="phone" id="phone" placeholder="Số điện thoại" maxlength="15" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" id="password" placeholder="Mật khẩu" maxlength="30" required>
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Xác nhận mật khẩu" maxlength="30" required>
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                    <div class="terms-group">
+                        <label>
+                            <input type="checkbox" name="termsAccepted" id="termsAccepted" required>
+                            <span>Tôi xác nhận các thông tin trên là chính xác</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-user-plus"></i>
+                        Đăng ký
                     </button>
-                    <a href="login.html" class="btn btn-outline-secondary">
-                        <i class="fas fa-arrow-left"></i> Quay lại trang đăng nhập
-                    </a>
-                </div>
-            </form>
+                    <p class="switch-form-text">
+                        Đã có tài khoản? <a href="login.html">Đăng nhập</a>
+                    </p>
+                </form>
+            </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/register.js"></script>
 </body>
-</html> 
+</html>

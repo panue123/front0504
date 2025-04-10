@@ -21,7 +21,7 @@
         <form action="#" method="POST">
             <div class="form-group">
                 <label for="username">Tên đăng nhập</label>
-                <input type="text" id="username" name="username" value="Hina" required readonly>
+                <input type="text" id="username" name="username" value="Hina" required readonly class="readonly-field">
             </div>
 
             <div class="form-group">
@@ -38,13 +38,7 @@
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" value="hina@example.com" required>
             </div>
-
-            <div class="form-group">
-                <label for="address">Địa chỉ</label>
-                <textarea id="address" name="address" rows="3" readonly>Hà Nội, Việt Nam</textarea>
-            </div>     
-
-            <button type="submit" class="btn-save">Lưu Thay Đổi</button>
+            <button type="submit" class="btn-save" id="saveProfileBtn">Lưu Thay Đổi</button>
         </form>
     </div>
 

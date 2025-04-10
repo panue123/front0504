@@ -4,24 +4,24 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hina - Mỹ phẩm chính hãng</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/navbar.css">
 	<link rel="stylesheet" href="assets/css/footer.css">
 	<link rel="stylesheet" href="assets/css/animations.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-	<title>Hina - Mỹ phẩm chính hãng</title>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
 	<div class="container-fluid px-0">
-		<!-- header -->
+		<!-- Header -->
 		<div class="header w-100">
 			<div class="navbar">
 				<div class="nav-row">
@@ -29,17 +29,22 @@
 						<span>hina</span>
 					</div>
 					<div class="nav-menu">
-						<div class="nav-link active"><a href="index.html">TRANG CHỦ</a></div>
+						<div class="nav-link active">
+							<a href="#" onclick="scrollToTop(); return false;">TRANG CHỦ</a>
+						</div>
 						<div class="nav-link dropdown">
-							<a href="#" class="dropdown-toggle" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								NHÓM SẢN PHẨM
+							<a href="#products" onclick="scrollToSection('products'); return false;">
+								NHÓM SẢN PHẨM <i class="fas fa-chevron-down"></i>
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="productDropdown">
-								<!-- Dữ liệu sẽ được tải từ backend -->
 							</ul>
 						</div>
-						<div class="nav-link"><a href="products.html?sort=hot">SẢN PHẨM HOT</a></div>
-						<div class="nav-link"><a href="about.html">GIỚI THIỆU</a></div>
+						<div class="nav-link">
+							<a href="#products-highlight" onclick="scrollToSection('products-highlight'); return false;">SẢN PHẨM HOT</a>
+						</div>
+						<div class="nav-link">
+							<a href="#about" onclick="scrollToSection('about'); return false;">GIỚI THIỆU</a>
+						</div>
 					</div>
 					<div class="search-box">
 						<input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
@@ -48,35 +53,41 @@
 						</div>
 					</div>
 					<div class="nav-icons">
-						<a href="#" class="second-nav-icon cart-icon" title="Giỏ hàng">
-							<i class="fa-solid fa-cart-shopping"></i>
-							<span class="badge" id="cartCount">0</span>
-						</a>
-						<div class="dropdown">
-							<a href="#" class="second-nav-icon user-icon" id="userDropdown" role="button" title="Tài khoản">
-								<i class="fa-regular fa-user"></i>
+						<div class="cart-area">
+							<a href="#" class="cart-icon-wrapper">
+								<i class="fas fa-shopping-cart cart-icon pink-icon"></i>
+								<span class="cart-count logged-in" style="display: none;">3</span>
 							</a>
-							<ul class="dropdown-menu" aria-labelledby="userDropdown">
-								<li class="not-logged-in">
-									<a class="dropdown-item" href="login.html">Đăng nhập</a>
-								</li>
-								<li class="not-logged-in">
-									<a class="dropdown-item" href="login.html#register">Đăng ký</a>
-								</li>
-								<li class="logged-in" style="display: none;">
-									<a class="dropdown-item" href="profile.html">Chỉnh sửa thông tin</a>
-								</li>
-								<li class="logged-in" style="display: none;">
-									<a class="dropdown-item" href="#" id="logoutBtn">Đăng xuất</a>
-								</li>
-							</ul>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+						<div class="user-area">
+		
+							<!-- Khi chưa login -->
+							<a href="login.html" class="user-icon not-logged-in">
+								<i class="fas fa-user pink-icon"></i>
+							</a>
+		
+							<!-- Khi đã login -->
+							<div class="dropdown logged-in" style="display: none;">
+								<a href="#" class="user-icon" data-bs-toggle="dropdown">
+									<i class="fas fa-user pink-icon"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="profile.html">Thông tin</a></li>
+									<li><a href="#" id="logoutBtn">Đăng xuất</a></li>
+								</ul>
+							</div>
+		
+						</div> 
+		
+					</div> 
+		
+				</div> 
+			</div> 
+		</div> <!-- end header -->
+		
+		<!-- Main Content -->
 		<div class="content">
-			<!-- slider -->
+			<!-- Hero Slider -->
 			<div class="slider">
 				<div id="carouselExampleDark" class="carousel carousel-fade slide" data-bs-ride="carousel" data-bs-pause="false">
 					<div class="carousel-inner">
@@ -109,25 +120,38 @@
 					</button>
 				</div>
 			</div>
+
+			<!-- Discover Section -->
 			<div class="discover container mt-3">
+				<!-- Category Images -->
 				<div class="row">
 					<div class="col-3 px-0">
-						<a href="products.html?category=skincare"><img src="./assets/img/dis1.webp" class="discover-img" alt="Chăm sóc da"></a>
+						<a href="products.html?category=skincare">
+							<img src="./assets/img/dis1.webp" class="discover-img" alt="Chăm sóc da">
+						</a>
 					</div>
 					<div class="col pe-0">
 						<div class="row">
-							<a href="products.html?category=makeup"><img src="./assets/img/dis2.webp" class="discover-img" alt="Trang điểm"></a>
+							<a href="products.html?category=makeup">
+								<img src="./assets/img/dis2.webp" class="discover-img" alt="Trang điểm">
+							</a>
 						</div>
 						<div class="row ms-1 gx-0 mt-3">
 							<div class="col-6">
-								<a href="products.html?category=perfume"><img src="./assets/img/dis3.webp" class="discover-img pe-3" alt="Nước hoa"></a>
+								<a href="products.html?category=perfume">
+									<img src="./assets/img/dis3.webp" class="discover-img pe-3" alt="Nước hoa">
+								</a>
 							</div>
 							<div class="col">
-								<a href="products.html?category=haircare"><img src="./assets/img/dis4.webp" class="discover-img" alt="Chăm sóc tóc"></a>
+								<a href="products.html?category=haircare">
+									<img src="./assets/img/dis4.webp" class="discover-img" alt="Chăm sóc tóc">
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
+
+				<!-- Flash Sale Banner -->
 				<div class="row mt-3">
 					<div class="col-12 px-0">
 						<a href="#">
@@ -135,86 +159,23 @@
 						</a>
 					</div>
 				</div>
+
+				<!-- Products Section -->
 				<div id="products">
 					<div class="row product mt-3">
 						<span class="col px-0 product-title">SẢN PHẨM</span>
 					</div>
-					<div class="row my-3 gx-5 product-container">
-						<div class="col-3" id="product-1">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row mb-1">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-						<div class="col-3 " id="product-2">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row mb-1">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-						<div class="col-3 " id="product-3">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row mb-1">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-						<div class="col-3 " id="product-4">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
+					<div class="row my-3 gx-5 product-container" id="productList">
+						<!-- Products loaded dynamically -->
 					</div>
 					<div class="row product-pagination mb-3">
 						<div class="dot active"></div>
 						<div class="dot"></div>
 						<div class="dot"></div>
-						<div class="dot"></div>
-						<div class="dot"></div>
-						<div class="dot"></div>
-						<div class="dot"></div>
 					</div>
 				</div>
+
+				<!-- Featured Products Section -->
 				<div id="products-highlight">
 					<div class="row product mt-3">
 						<span class="col px-0 product-title">SẢN PHẨM NỔI BẬT</span>
@@ -224,153 +185,15 @@
 						<div class="col-3 product-nav">BỔ SUNG COLLAGEN</div>
 						<div class="col-3 product-nav">CHỐNG LÃO HÓA</div>
 					</div>
-					<div class="row my-3 gx-5 product-container">
-						<div class="col-3 ">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row mb-1">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-						<div class="col-3 ">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row mb-1">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-						<div class="col-3 ">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row mb-1">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-						<div class="col-3 ">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-					</div>
-					<div class="row my-3 gx-5 product-container">
-						<div class="col-3 ">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row mb-1">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-						<div class="col-3 ">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row mb-1">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-						<div class="col-3 ">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row mb-1">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-						<div class="col-3 ">
-							<div class="row product-sale"><span>15%</span></div>
-							<div class="row">
-								<div class="product_img">
-									<img src="./assets/img/product.png" alt="" class="">
-								</div>
-							</div>
-							<div class="row product-info mb-1">
-								<p onclick="goToProductDetail()">
-									Kem dưỡng body trẻ hóa da toàn thân
-								</p>
-								<button class="add-to-cart-btn" onclick="addToCart(event)">Thêm vào giỏ</button>
-							</div>
-							<div class="row product-price"><span class="">1.400.000 chi còn
-									1.190.000</span></div>
-						</div>
-					</div>
-					<div class="row product-pagination mb-3">
-						<div class="active"></div>
-						<div class=""></div>
-						<div class=""></div>
-						<div class=""></div>
-						<div class=""></div>
-						<div class=""></div>
-						<div class=""></div>
+					<div class="row my-3 gx-5 product-container" id="featuredProductList">
+						<!-- Featured products loaded dynamically -->
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- About Section -->
-		<div class="about-section py-5">
+		<div class="about-section py-5" id="about">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-md-6">
@@ -397,8 +220,8 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- footer -->
+
+		<!-- Footer -->
 		<div class="footer">
 			<div class="container">
 				<div class="row">
@@ -472,11 +295,53 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Quick View Modal -->
+	<div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="quick-view-image">
+								<img id="quickViewImage" src="" alt="Product Image">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<h2 id="quickViewName" class="product-name"></h2>
+							<div class="product-price">
+								<span class="old-price"></span>
+								<span class="current-price"></span>
+							</div>
+							<div class="product-quantity">
+								<span class="quantity-label">Số lượng</span>
+								<div class="quantity-input">
+									<button class="quantity-btn minus">-</button>
+									<input type="number" id="quickViewQuantity" value="1" min="1">
+									<button class="quantity-btn plus">+</button>
+								</div>
+							</div>
+							<div class="product-actions">
+								<button class="btn-add-cart" onclick="addToCart()">
+									THÊM VÀO GIỎ
+								</button>
+								<button class="btn-view-detail" onclick="viewProductDetail()">
+									XEM CHI TIẾT
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/js/auth.js"></script>
-	<script src="assets/js/cart.js"></script>
-	<script src="assets/js/category.js"></script>
 	<script src="assets/js/index.js"></script>
-	<script src="assets/js/profile.js"></script>
+	<script src="assets/js/cart.js"></script>
 </body>
 </html>

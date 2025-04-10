@@ -1,0 +1,23 @@
+.content{
+    width: 80%!important;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.add-text{
+    color: #727272;
+	font-size: 40px;
+	font-family: "Archivo", serif;
+	font-weight: 400;
+}
+.form-text{
+    color: #727272;
+	font-size: 40px;
+	font-family: "Archivo", serif;
+	font-weight: 600;
+}
+.btn-color{
+    border: none!important;
+    height: 200%;
+    background-color: #FDB6BB!important;
+    color: #FFFEFE;
+}

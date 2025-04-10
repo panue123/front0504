@@ -1,110 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/base.css">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/donhang.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
-		rel="stylesheet">
-	<link
-		href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/giohang.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hina - Mỹ phẩm chính hãng</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container-fluid px-0">
-        <div class="header w-100">
-			<div class="navbar">
-				<div class="row first-nav-row mx-0 w-100">
-					<div class="col ">
-						<div class="row">
-							<div class="col-4 second-nav-text search-box px-3">
-								<input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
-							</div>
-							<div class="col-6 nav-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-						</div>
-					</div>
-					<div class="col nav-logo">
-						<span>hina</span>
-					</div>
-				</div>
-				<div class="row second-nav-row w-100 mx-auto">
-					<div class="col second-nav-text active"><a href="" onclick="goToHomePage()">TRANG CHỦ</a></div>
-					<div class="col second-nav-text dropdown">
-						<a href="#" class="dropdown-toggle" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							NHÓM SẢN PHẨM
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="productDropdown">
-							<li><a class="dropdown-item" href="#">Chăm sóc da</a></li>
-							<li><a class="dropdown-item" href="#">Trang điểm</a></li>
-							<li><a class="dropdown-item" href="#">Nước hoa</a></li>
-						</ul>
-					</div>
-					<div class="col second-nav-text" id="products-hot"><a href="">SẢN PHẨM HOT</a></div>
-					<div class="col second-nav-text"><a href="">GIỚI THIỆU</a></div>
-					<div class="col second-nav-text">
-						<div class="row">
-							<div class="col">
-								<a href="cart.html" class="second-nav-icon"><i class="fa-solid fa-cart-shopping"></i></a>
-							</div>
-							<div class="col"><a href="" class="second-nav-icon"><i class="fa-regular fa-user"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-        <div class="content">
-            <div class="row">
-                <div class="col"><p class="text">LỊCH SỬ MUA HÀNG</p></div>
+<div class="container-fluid px-0">
+    <!-- Header -->
+    <div class="header w-100">
+      <div class="navbar">
+        <div class="nav-row">
+          <div class="nav-logo">
+            <span>hina</span>
+          </div>
+          <div class="nav-menu">
+            <div class="nav-link active">
+              <a href="#" onclick="scrollToTop(); return false;">TRANG CHỦ</a>
             </div>
-        <div class="container text">
-            <table class="table">
-                <thead>
-                    <tr class="table-danger text">
-                        <th><p>Mã đơn hàng</p></th>
-                        <th><p>Sản phẩm</p></th>
-                        <th><p>Phân loại hàng</p></th>
-                        <th><p>Thành tiền</p></th>
-                        <th><p>Trạng thái đơn</p></th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><p>1234</p></td>
-                        <td>
-                            <div class="row">
-                                <div class="col-1">
-                                    <img src="./assets/img/a2.jpg" alt="ảnh sản phẩm" class="product-img">
-                                </div>
-                                <div class="col"><p>Sữa chống nắng bảo vệ hoàn hảo Anessa...</p></div>
-                            </div>
-                        </td>
-                        <td><p>Version new</p></td>
-                        <td><p class="price">₫586.000</p></td>
-                        <td><p>Đã duyệt</p></td>
-                        <td><button class="btn btn-danger btn-sm"><p>Hủy đơn</p></button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="nav-link dropdown">
+              <a href="#products" onclick="scrollToSection('products'); return false;">
+                NHÓM SẢN PHẨM <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="productDropdown"></ul>
+            </div>
+            <div class="nav-link">
+              <a href="#products-highlight" onclick="scrollToSection('products-highlight'); return false;">SẢN PHẨM HOT</a>
+            </div>
+            <div class="nav-link">
+              <a href="#about" onclick="scrollToSection('about'); return false;">GIỚI THIỆU</a>
+            </div>
+          </div>
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+            <div class="nav-search-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+          </div>
+          <div class="nav-icons">
+            <div class="cart-area">
+              <a href="#" class="cart-icon-wrapper">
+                <i class="fas fa-shopping-cart cart-icon pink-icon"></i>
+                <span class="cart-count logged-in" style="display: none;">3</span>
+              </a>
+            </div>
+            <div class="user-area">
+              <!-- Khi chưa login -->
+              <a href="login.html" class="user-icon not-logged-in">
+                <i class="fas fa-user pink-icon"></i>
+              </a>
+
+              <!-- Khi đã login -->
+              <div class="dropdown logged-in" style="display: none;">
+                <a href="#" class="user-icon" data-bs-toggle="dropdown">
+                  <i class="fas fa-user pink-icon"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="profile.html">Thông tin</a></li>
+                  <li><a href="#" id="logoutBtn">Đăng xuất</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-	<script src="index.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    <!-- end header -->
+
+    <!-- Content -->
+    <div class="content" style="margin-top: 100px">
+		<div class="row">
+			<div class="col text"><p>LICH SỬ ĐƠN HÀNG</p></div>
+		</div>
+		<div class="text">
+			<table class="table table-bordered text-center align-middle table-hover">
+				<thead>
+				  <tr class="table-danger">
+					<th class="tb-text">Mã đơn hàng</th>
+					<th class="tb-text">Sản phẩm</th>
+					<th class="tb-text">Phân Loại Hàng</th>
+					<th class="tb-text">Thành tiền</th>
+					<th class="tb-text">Trạng thái đơn</th>
+					<th class="tb-text">Mua lại</th>
+				  </tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>	                  
+	</div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="./assets/js/cart1.js"></script>
+  <script src="index.js"></script>
 </body>
+
 </html>

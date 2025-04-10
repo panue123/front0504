@@ -192,3 +192,16 @@
         font-size: 16px;
     }
 }
+
+.nav-link.dropdown a i {
+    font-size: 10px;
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+    color: #666;
+    vertical-align: 1px;
+}
+
+.nav-link.dropdown:hover a i {
+    transform: rotate(90deg);
+    color: #EFC5C9;
+}

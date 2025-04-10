@@ -121,3 +121,8 @@ textarea {
     color: red;
     font-size: 14px;
 }
+.readonly-field {
+    background-color: #f8f8f8;
+    color: #999;
+    cursor: not-allowed;
+}
